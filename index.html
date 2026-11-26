@@ -1958,13 +1958,13 @@ const VE = {
     if (!n) return `<p class="e-none">Questa sezione non ha ancora approfondimenti.</p>`;
     return `<button class="e-open" data-id="${c.id}">${c.reset ? 'Apri tutti gli approfondimenti' : `Apri ${esc(c.name)}`}</button>`;
   },
-  detailM(c) { return `<p class="e-desc">${esc(c.desc)}</p>${this.chips(c)}${listFor(c.id).length ? `<p class="e-lab">Ultimi</p>${this.arts(c, 2)}` : ''}${this.openBtn(c)}`; },
+  detailM(c) { return `${this.chips(c)}${listFor(c.id).length ? `<p class="e-lab">Ultimi</p>${this.arts(c, 2)}` : ''}${this.openBtn(c)}`; },
   pickSec(id) { // desktop: anteprima della voce sotto il puntatore (1/3 sezione, 2/3 ultimi)
     if (this.pick === id) return;
     this.pick = id; const c = catById(id), n = listFor(id).length;
     $$('.e-lk', navRoot).forEach(b => { const a = b.dataset.id === id; b.classList.toggle('peek', a); b.setAttribute('aria-expanded', a); });
-    $('.e-c2', navRoot).innerHTML = `<h2 class="e-h">${esc(c.name)}</h2><p class="e-desc">${esc(c.desc)}</p>${this.chips(c)}`;
-    $('.e-c3', navRoot).innerHTML = `<h2 class="e-h">${c.reset ? 'Gli ultimi' : 'Ultimi in ' + esc(c.name)}</h2>`
+    $('.e-c2', navRoot).innerHTML = this.chips(c); // solo l'etichetta “Sottosezioni” e i chip
+    $('.e-c3', navRoot).innerHTML = `<p class="e-lab">Ultimi</p>`
       + (n ? this.arts(c, G.H < 720 ? 2 : 4) : `<p class="e-none">Questa sezione non ha ancora approfondimenti.</p>`);
   },
   go(t) { // azioni che portano davvero ai contenuti (layer e sheet)
@@ -2478,7 +2478,7 @@ const SRCH = {
     const pool = ART.filter(a => !sec || catOf(a) === sec.id);
     if (!q) {
       const sugg = ['bonifiche dei siti contaminati', 'violenza sulle donne', 'mafia e Stato', 'prezzi e consumi', 'sanità e liste d’attesa', 'attacchi informatici'];
-      this.res.innerHTML = `<p class="srch-lab">Prova a cercare${sec ? ' in ' + esc(sec.label) : ' in Radar'}</p><div class="srch-sugg">${sugg.map(s => `<button type="button" data-sugg="${esc(s)}">${esc(s)}</button>`).join('')}</div>`;
+      this.res.innerHTML = `<div class="srch-sugg">${sugg.map(s => `<button type="button" data-sugg="${esc(s)}">${esc(s)}</button>`).join('')}</div>`;
       return;
     }
     const toks = norm(q).split(/[^a-z0-9]+/).filter(t => t.length > 2 && !STOP.has(t)).map(stem);
