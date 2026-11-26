@@ -2450,11 +2450,7 @@ const SRCH = {
     });
   },
   isOpen() { return !this.el.hidden; },
-  baseFilters() {
-    const f = [{k: 'radar', label: 'Radar'}];
-    if (!isReset(S.cat)) f.push({k: 'sec', label: catById(S.cat).name, id: S.cat});
-    return f;
-  },
+  baseFilters() { return [{k: 'radar', label: 'Radar'}]; }, // unico pre-filtro: Radar (niente chip di sezione)
   renderChips() {
     this.chips.innerHTML = this.filters.map(f => `<span class="srch-chip${f.k === 'sec' ? ' sec' : ''}">${esc(f.label)}<button type="button" data-rmchip="${f.k}" aria-label="Rimuovi il filtro ${esc(f.label)}"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M9 3 3 9M3 3l6 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></button></span>`).join('');
     this.q.setAttribute('aria-label', 'Descrivi l’informazione che cerchi' + (this.filters.length ? ', filtri: ' + this.filters.map(f => f.label).join(', ') : ''));
@@ -2566,7 +2562,7 @@ function renderDesc() {
       <li>A, B, C partono da “In evidenza” (proposta del giorno, ultimi 9 pezzi); D parte da “Tutte” (archivio in ordine cronologico).</li>
       <li>In tutte le varianti, dopo l’ultimo pezzo di una sezione compare un pannello “Fine di…” con “Continua con…” (salta le sezioni vuote) e “Torna a…”. Non c’è passaggio automatico.</li>
       <li>In tutte le varianti ogni sezione ricorda il pezzo a cui eri arrivato e il tasto Indietro del browser riporta alla sezione precedente.</li>
-      <li>Header (bozza Figma “Navbar”): niente data; a destra Abbonati, Accedi e ricerca (su mobile Accedi va nel menu). La ricerca (bozza “Search”) parte con il pre-filtro “Radar”; se si è dentro una sezione si aggiunge anche il chip della sezione (proposta). I chip si tolgono con × o Backspace; senza “Radar” la ricerca su tutto QN non è simulata. Se il filtro di sezione nasconde risultati più pertinenti, sotto compare “Altri risultati nel resto di Radar”. Scorciatoia “/”, Invio apre il primo risultato nel dettaglio.</li>
+      <li>Header (bozza Figma “Navbar”): niente data; a destra Abbonati, Accedi e ricerca (su mobile Accedi va nel menu). La ricerca (bozza “Search”) parte con il solo pre-filtro “Radar”, da qualunque sezione. Il chip si toglie con × o Backspace; senza “Radar” la ricerca su tutto QN non è simulata. Scorciatoia “/”, Invio apre il primo risultato nel dettaglio.</li>
       <li>Dettaglio notizia (direzione A + fine di B): si apre dal titolo o dal pulsante espandi, la card si allarga fino allo schermo pieno e l’URL diventa quello dell’articolo. Desktop: colonna guida con foto che si riduce scorrendo, sezione › sottosezione, tempo di lettura, numero di grafici e indice di sottotitoli e grafici che segue la lettura (stesse tacche del rail). In fondo, il pezzo successivo della sezione: si continua a leggere senza chiudere, e dopo l’ultimo si passa alla sezione successiva; la ruota dietro resta allineata. Mobile: barra con ritorno alla sezione, indice e avanzamento. Indietro del browser torna al pezzo precedente, Esc chiude.</li>
       <li>Testi del dettaglio: estratti dagli articoli su quotidiano.net. 18 pezzi sono liberi (testo completo, 70 grafici indicati con titolo e link perché l’artifact non può incorporare gli iframe); 22 sono a pagamento: il testo originale non è accessibile (non ho aggirato il paywall). Per vedere uno scroll realistico, i pezzi a pagamento e quelli liberi sotto le 900 parole proseguono con testo segnaposto generico sul tema della sottosezione (senza dati inventati), segnalato da una nota “Da qui testo segnaposto”. L’interruttore “Paywall” nella toolbar mostra invece il riquadro abbonati sui pezzi a pagamento.</li>
       <li>Il cambio di sezione usa lo stesso movimento in tutte: impulso radar dal centro e ruota che gira via, così la transizione si legge come “nuova scansione”.</li>
