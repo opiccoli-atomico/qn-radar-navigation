@@ -34,7 +34,7 @@ r32 https://www.quotidiano.net/image-service/view/acePublic/alias/contentid/MGVh
 r33 https://www.quotidiano.net/image-service/view/acePublic/alias/contentid/YjFkYzg4YzMtMDQ5MS00/0/sarebbero-circa-70mila-le-telecamere-a-rischio-nelle-case-italiane.webp
 r34 https://www.quotidiano.net/image-service/view/acePublic/alias/contentid/YjQzNWQ1ZTgtMzZiYy00/0/il-ceo-di-anthropic-dario-amodei.webp
 r35 https://www.quotidiano.net/image-service/view/acePublic/alias/contentid/ZTQ2YjNjZTItYmMyNS00/0/image.webp
-r36 https://www.quotidiano.net/image-service/view/acePublic/alias/contentid/OTBjZGZiMGUtZTljOC00/0/image.webp
-r37 https://www.quotidiano.net/image-service/view/acePublic/alias/contentid/MmNjMTQ4ZmItZjA0Yi00/0/una-foto-della-manifestazione-a-firenze-del-24-ottobre-contro-il-caro-vita.webp
-r38 https://www.quotidiano.net/image-service/view/acePublic/alias/contentid/NjY3YjViOTItNjAzZS00/0/image.webp
-r39 https://www.quotidiano.net/image-service/view/acePublic/alias/contentid/NmIwNTY0MzgtZTY3My00/1/un-manifestante-regge-un-cartello-con-la-scritta-tassa-zucman-i-super-ricchi-alla-cassa-durante-una-manifestazione-in-francia-nel-settembre-2025.webp
+r36 https://www.quotidiano.net/image-service/view/acePublic/alias/contentid/MDIzODVlMTYtMTNkMS00/0/image.webp
+r37 https://www.quotidiano.net/image-service/view/acePublic/alias/contentid/NmY5MjI1ODItYjhkZi00/0/image.webp
+r38 https://www.quotidiano.net/image-service/view/acePublic/alias/contentid/NTVhZjM0OTEtZDcwMC00/0/image.webp
+r39 https://www.quotidiano.net/image-service/view/acePublic/alias/contentid/MWYzYzZhM2EtNDMzNS00/0/image.webp

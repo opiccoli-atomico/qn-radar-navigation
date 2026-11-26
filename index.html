@@ -2,7 +2,7 @@
 <title>Radar Lab Sezioni</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&family=Source+Serif+4:opsz,wght@8..60,400..700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=Inter:wght@600&display=swap">
 <style>
 /* Layout: banco di prova — toolbar scura in alto, sotto lo stage Radar (a tutta larghezza su desktop, in cornice telefono su mobile).
    Token ripresi dalla pagina live quotidiano.net/radar (25.11.2026). QN Shinka Display non è caricabile qui: fallback Source Serif 4. */
@@ -95,18 +95,19 @@ body[data-view="mobile"] .frame{width:390px;height:min(820px,calc(100% - 44px));
 .notes .gen{border-top:1px solid #ffffff1a;margin-top:22px;padding-top:6px;color:var(--ink-muted);font-size:12.5px}
 
 /* ---------- Stage Radar (condiviso) ---------- */
-.qh{position:absolute;inset:0 0 auto;height:var(--hh);display:flex;align-items:center;padding:0 28px;z-index:40;background:linear-gradient(180deg,var(--surface) 0%,rgba(var(--surface-rgb),.78) 100%);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(var(--fg-rgb),.07)}
-.qh-l,.qh-r{flex:1;display:flex;align-items:center;gap:20px;min-width:0}
+.qh{position:absolute;inset:0 0 auto;height:var(--hh);display:flex;align-items:center;padding:0 32px;z-index:40;background:var(--surface);border-bottom:1px solid var(--hair);box-shadow:0 3px 5px rgba(31,34,38,.08),0 0 1px rgba(31,34,38,.2);box-sizing:border-box}
+.qh-l,.qh-r{flex:1;display:flex;align-items:center;gap:24px;min-width:0}
+.qh-l .burger{margin-right:24px}
 .qh-r{justify-content:flex-end}
 .burger{all:unset;cursor:pointer;width:32px;height:32px;display:grid;place-items:center;border-radius:6px}
-.qh-l a{font:500 15px var(--serif);color:var(--fg);text-decoration:none}
-.logo{font:700 44px/1 var(--serif);letter-spacing:-.06em;color:var(--fg);text-decoration:none;flex:none}
+.qh-l a{font:500 16px/1.3 var(--serif-text);color:var(--fg);text-decoration:none}
+.logo{position:absolute;left:50%;translate:-50% 0;font:700 40px/1 var(--serif);letter-spacing:-.06em;color:var(--fg);text-decoration:none;flex:none}
 .logo span{display:inline-block;transform:translateY(2px)}
-.dateline{color:var(--accent);font-weight:500;font-size:16px;letter-spacing:.01em;white-space:nowrap}
+
 .frame[data-layout="m"] .qh{padding:0 16px}
 .frame[data-layout="m"] .qh-l a{display:none}
 .frame[data-layout="m"] .logo{font-size:34px}
-.frame[data-layout="m"] .dateline{font-size:13px}
+
 
 .plate{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .rings{position:absolute;inset:0;width:100%;height:100%}
@@ -156,18 +157,28 @@ body[data-view="mobile"] .frame{width:390px;height:min(820px,calc(100% - 44px));
 .by b{font-weight:600;color:var(--fg)}
 .frame[data-layout="m"] .tx{padding:16px 18px 16px;gap:8px}
 .frame[data-layout="m"] .kick{font-size:11px}
-/* Card: proporzioni e tipografia riprese dalla pagina live (desktop in scala con --k) */
-.card{border-radius:calc(18px * var(--k,1));grid-template-columns:43.8% minmax(0,1fr);opacity:.45}
-.frame[data-layout="d"] .tx{padding:calc(32px * var(--k)) calc(36px * var(--k)) calc(28px * var(--k));gap:calc(14px * var(--k))}
-.frame[data-layout="d"] .kick{font-size:calc(13px * var(--k));letter-spacing:.15em;text-transform:none;line-height:1.45}
-.frame[data-layout="d"] .tt{line-height:1.15;-webkit-line-clamp:5}
-.frame[data-layout="d"] .sm{font-size:calc(19px * var(--k));line-height:1.5;-webkit-line-clamp:3}
-.frame[data-layout="d"] .by{font-size:max(12px, calc(15px * var(--k)))}
-.frame[data-layout="m"] .card{grid-template-rows:43% minmax(0,1fr);border-radius:18px}
-.frame[data-layout="m"] .tx{padding:18px;gap:8px}
-.frame[data-layout="m"] .kick{font-size:11px;letter-spacing:.12em;text-transform:none}
-.frame[data-layout="m"] .tt{line-height:1.15;-webkit-line-clamp:5}
-.frame[data-layout="m"] .sm{display:none} /* come sul live: su mobile il lead non c'è */
+/* Card allineata alla bozza Figma “Focused story” (desktop 904×396 in scala con --k, mobile 296×525):
+   immagine quadrata con badge sezione, occhiello Label/14, titolo Title/40 (32 su mobile) 1.3, firma Subheading/14 con “di” in corsivo */
+.card{border-radius:calc(12px * var(--k,1));grid-template-columns:43.8% minmax(0,1fr);opacity:.45}
+.tx{justify-content:space-between}
+.tw{display:flex;flex-direction:column;gap:calc(16px * var(--k,1));min-width:0}
+.kick{font:400 calc(14px * var(--k,1))/1 var(--sans);letter-spacing:0;text-transform:none;color:var(--accent)}
+.tt{line-height:1.3}
+.by{font:400 max(12px, calc(14px * var(--k,1)))/1.3 var(--serif-text);color:var(--tert)}
+.by i{font-style:italic}
+.badge{position:absolute;left:calc(24px * var(--k,1));bottom:calc(24px * var(--k,1));z-index:2;padding:4px 8px;border-radius:4px;background:rgba(42,46,51,.6);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);color:#fff;font:600 12px/16px "Inter",var(--sans);text-transform:uppercase;letter-spacing:0;pointer-events:none}
+.xp{all:unset;box-sizing:border-box;cursor:pointer;position:absolute;z-index:3;top:calc(24px * var(--k,1));right:calc(24px * var(--k,1));width:calc(48px * var(--k,1));height:calc(48px * var(--k,1));border-radius:50%;display:grid;place-items:center;background:var(--fg);color:var(--bg);transition:scale .25s var(--e),opacity .3s}
+.xp:hover{scale:1.06}
+.xp:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.slot:not([data-focused="true"]) .xp{opacity:0}
+.frame[data-layout="d"] .tx{padding:calc(24px * var(--k)) calc(24px * var(--k)) calc(24px * var(--k)) calc(32px * var(--k));gap:calc(16px * var(--k))}
+.frame[data-layout="d"] .tw{padding-right:calc(64px * var(--k))}
+.frame[data-layout="d"] .tt{-webkit-line-clamp:4}
+.frame[data-layout="m"] .card{grid-template-rows:42.3% minmax(0,1fr);border-radius:12px}
+.frame[data-layout="m"] .tx{padding:16px 16px 24px;gap:12px}
+.frame[data-layout="m"] .tt{-webkit-line-clamp:4}
+.frame[data-layout="m"] .badge{left:12px;bottom:12px}
+.frame[data-layout="m"] .xp{top:12px;right:12px;width:40px;height:40px;background:#fff;color:#16181b}
 /* card non attive, come sul live: foto in bianco e nero velata d'azzurro, testo attenuato */
 .ph::after{content:"";position:absolute;inset:0;background:var(--accent);mix-blend-mode:color;opacity:0;transition:opacity var(--turn) var(--ei);pointer-events:none}
 .ph img{transition:filter var(--turn) var(--ei)}
@@ -175,6 +186,28 @@ body[data-view="mobile"] .frame{width:390px;height:min(820px,calc(100% - 44px));
 .slot:not([data-focused="true"]) .ph::after{opacity:1}
 .tx{transition:opacity var(--turn) var(--ei)}
 .slot:not([data-focused="true"]) .tx{opacity:.55}
+/* Fine sezione · proposta 1 “Essenziale” */
+.end-a{gap:14px}
+/* Fine sezione · proposta 2 “Prossimo”: il pezzo successivo è il pulsante */
+.end-b{gap:10px;padding:14px}
+.end-b .end-up{margin:0;grid-template-columns:96px minmax(0,1fr) 36px;padding:8px;background:transparent}
+.end-b .end-up:hover{background:rgba(var(--glow),.08)}
+.end-b .up-th{width:96px;height:72px}
+.end-b .up-go{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--fg);color:var(--bg);font:600 15px var(--sans);transition:translate .25s var(--e)}
+.end-b .end-up:hover .up-go{translate:3px 0}
+.end-pan.end-b .reset{align-self:flex-start;margin-left:8px;font-size:13px}
+.frame[data-layout="m"] .end-b .end-up{grid-template-columns:72px minmax(0,1fr) 32px}
+.frame[data-layout="m"] .end-b .up-th{width:72px;height:56px}
+/* Fine sezione · proposta 3 “Nei comandi”: etichetta accanto alla freccia avanti sull’ultimo pezzo */
+.steps{position:absolute}
+.nx-hint{position:absolute;right:calc(100% + 10px);bottom:0;height:44px;display:flex;align-items:center;gap:6px;padding:0 14px;border-radius:999px;white-space:nowrap;background:var(--fg);color:var(--bg);font:500 13px var(--sans);box-shadow:var(--pop-shadow);pointer-events:none;animation:hintIn .45s var(--e)}
+.nx-hint b{font-weight:600}
+.nx-hint[hidden]{display:none}
+@keyframes hintIn{from{opacity:0;translate:8px 0}}
+.frame[data-layout] .steps .stp.to-sec{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.frame[data-layout] .steps .stp.to-sec:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.frame[data-layout="m"] .nx-hint{right:0;bottom:calc(100% + 10px);height:36px;font-size:12.5px;padding:0 12px}
+.frame[data-layout="m"] .stp.to-sec svg{rotate:-90deg}
 .empty-card{grid-template-columns:1fr !important;grid-template-rows:1fr !important;place-items:center;text-align:center}
 .empty-card .tx{align-items:center;justify-content:center;max-width:360px;margin:auto}
 .empty-card .tt{font-size:26px}
@@ -250,7 +283,7 @@ body[data-view="mobile"] .frame{width:390px;height:min(820px,calc(100% - 44px));
 /* rail di tacche (ripreso dal live, ora per sezioni) */
 .b-rail{position:absolute;left:0;top:var(--cy);translate:0 -50%;z-index:9;display:flex;flex-direction:column;padding:8px 12px 8px 0;touch-action:none}
 .b-mark{all:unset;height:13px;display:flex;align-items:center;cursor:pointer;padding-left:10px}
-.b-mark i{display:block;height:2px;width:calc(10px + 16px * var(--k,0));background:rgba(var(--fg-rgb),calc(.3 + .5 * var(--k,0)));border-radius:2px;transition:width 90ms,background .15s}
+.b-mark i{display:block;height:2px;width:calc(10px + 16px * var(--mk,0));background:rgba(var(--fg-rgb),calc(.3 + .5 * var(--mk,0)));border-radius:2px;transition:width 90ms,background .15s}
 .b-mark[aria-current="true"] i{background:var(--accent);height:3px}
 .b-mark[data-empty] i{background:rgba(var(--fg-rgb),.14)}
 .b-mark:focus-visible{outline:2px solid var(--accent);outline-offset:0}
@@ -450,7 +483,7 @@ body[data-view="mobile"] .frame{width:390px;height:min(820px,calc(100% - 44px));
 .d-rail{position:absolute;left:0;width:38px;height:var(--rh);z-index:9;touch-action:none;cursor:pointer}
 .d-rail::before{content:"";position:absolute;left:10px;top:-10px;bottom:-10px;width:1px;background:linear-gradient(transparent,rgba(var(--fg-rgb),.12) 12%,rgba(var(--fg-rgb),.12) 88%,transparent)}
 .d-tk{all:unset;box-sizing:border-box;position:absolute;left:0;top:var(--y);height:8px;margin-top:-4px;width:38px;display:flex;align-items:center;padding-left:10px;cursor:pointer}
-.d-tk i{display:block;height:2px;width:calc(9px + 15px * var(--k,0));background:rgba(var(--fg-rgb),calc(.42 + .45 * var(--k,0)));border-radius:2px;transition:width 90ms,background .15s,height .2s}
+.d-tk i{display:block;height:2px;width:calc(9px + 15px * var(--mk,0));background:rgba(var(--fg-rgb),calc(.42 + .45 * var(--mk,0)));border-radius:2px;transition:width 90ms,background .15s,height .2s}
 .d-tk[aria-current="true"] i{background:var(--accent);height:3px;width:26px;box-shadow:0 0 8px rgba(var(--glow),.5)}
 .d-tk:focus-visible{outline:2px solid var(--accent);outline-offset:0}
 .d-rail.fresh .d-tk{animation:tkIn .5s var(--e) both;animation-delay:calc(var(--i) * 14ms)}
@@ -599,7 +632,7 @@ body[data-view="mobile"] .frame{width:390px;height:min(820px,calc(100% - 44px));
 /* cronologia desktop */
 .e-rail{position:absolute;left:0;width:38px;z-index:9;cursor:pointer;touch-action:none}
 .e-tk{all:unset;box-sizing:border-box;position:absolute;left:0;top:0;translate:0 calc(var(--y,0px) - 50%);height:13px;width:38px;display:flex;align-items:center;padding-left:10px;cursor:pointer;transition:translate .5s var(--e),opacity .3s}
-.e-tk i{display:block;height:2px;width:calc(10px + 14px * var(--k,0));background:rgba(var(--fg-rgb),calc(.4 + .45 * var(--k,0)));border-radius:2px;transition:width 90ms,background .15s}
+.e-tk i{display:block;height:2px;width:calc(10px + 14px * var(--mk,0));background:rgba(var(--fg-rgb),calc(.4 + .45 * var(--mk,0)));border-radius:2px;transition:width 90ms,background .15s}
 .e-tk.today i{background:#7fb0e3}
 .e-tk[aria-current="true"] i{width:24px;height:3px;background:var(--accent)}
 .e-tk.out{opacity:0;pointer-events:none}
@@ -659,6 +692,231 @@ body[data-view="mobile"] .frame{width:390px;height:min(820px,calc(100% - 44px));
 .ea-b .e-open,.ea-b .e-none{margin:4px 0 16px}
 .ea-b .e-open{width:100%;justify-content:center}
 
+/* ---------- Dettaglio notizia ---------- */
+.dt{position:absolute;left:0;right:0;bottom:0;top:var(--hh);z-index:70;background:var(--bg);display:grid;grid-template-columns:minmax(300px,32%) minmax(0,1fr);clip-path:inset(0 0 0 0);transition:clip-path .6s var(--e)}
+.dt[hidden]{display:none}
+.dt.closing{transition:clip-path .5s var(--ei),opacity .5s ease-in;opacity:.0}
+.dt-side{position:relative;display:flex;flex-direction:column;min-height:0;border-right:1px solid var(--hair);background:var(--surface)}
+.dt-ph{position:relative;flex:none;overflow:hidden;height:calc(56% - (56% - 176px) * var(--sp,0));background:var(--ph-bg)}
+.dt-ph img,.dt-mph img,.dt-next .th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dt-ph .badge{left:24px;bottom:20px}
+.dt-guide{flex:1;min-height:0;overflow:auto;padding:22px 28px 24px;display:flex;flex-direction:column;gap:14px;scrollbar-width:thin}
+.dt-crumb{margin:0;font:500 13px var(--sans);color:var(--muted)}
+.dt-crumb b{color:var(--fg);font-weight:600}
+.dt-meta{margin:-6px 0 0;font:500 13px var(--sans);color:var(--accent)}
+.dt-index .eyebrow{margin:6px 0 8px}
+.dt-index ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.dt-index a{display:grid;grid-template-columns:30px minmax(0,1fr);align-items:baseline;padding:6px 6px 6px 0;border-radius:6px;color:var(--muted);text-decoration:none;font:500 14px/1.35 var(--sans);transition:color .2s}
+.dt-index a::before{content:"";align-self:center;height:2px;width:12px;border-radius:2px;background:rgba(var(--fg-rgb),.3);transition:width .35s var(--e),background .25s,height .2s}
+.dt-index a:hover{color:var(--fg)}
+.dt-index a.read::before{background:rgba(var(--glow),.45)}
+.dt-index a[aria-current="true"]{color:var(--fg);font-weight:600}
+.dt-index a[aria-current="true"]::before{width:24px;height:3px;background:var(--accent)}
+.dt-index a:focus-visible{outline:2px solid var(--accent);outline-offset:0}
+.dt-index li.fig a{font-size:13px;color:var(--tert);grid-template-columns:30px 18px minmax(0,1fr)}
+.dt-index li.fig a::before{width:6px}
+.dt-index li.fig .fi{display:flex;color:var(--accent)}
+.dt-index li.fig .fi svg{width:14px;height:14px}
+.dt-index li.fig a[aria-current="true"]{color:var(--fg)}
+.dt-by{margin:auto 0 0;padding-top:14px;border-top:1px solid var(--hair);font:400 14px/1.4 var(--serif-text);color:var(--muted)}
+.dt-by span{display:block;font:400 12px var(--sans);color:var(--tert);margin-top:4px}
+.dt-main{position:relative;min-height:0;overflow:auto;overscroll-behavior:contain}
+.dt-col{max-width:660px;margin:0 auto;padding:56px 40px 96px;transition:opacity .26s,translate .26s var(--e)}
+.dt-col.leave{opacity:0;translate:0 -18px}
+.dt-col.enter{animation:dtIn .55s var(--e)}
+@keyframes dtIn{from{opacity:0;translate:0 28px}}
+.dt-mph{display:none}
+.dt-col .kick{font-size:14px}
+.dt-title{margin:14px 0 18px;font:600 clamp(32px, calc(52px * var(--k,1)), 52px)/1.15 var(--serif);letter-spacing:-.01em;text-wrap:balance;outline:none}
+.dt-byrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.dt-byrow .by{margin:0;flex:none}
+.dt-follow{all:unset;cursor:pointer;font:600 12.5px var(--sans);padding:5px 10px;border-radius:999px;border:1px solid var(--hair)}
+.dt-follow:hover{border-color:var(--accent);color:var(--accent)}
+.dt-acts{margin-left:auto;display:flex;gap:6px}
+.dt-acts button{all:unset;cursor:pointer;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--hair);color:var(--fg)}
+.dt-acts button:hover{border-color:var(--accent);color:var(--accent)}
+.dt-acts button:focus-visible,.dt-follow:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.dt-lead{margin:22px 0 6px;font:400 21px/1.5 var(--serif-text);color:var(--muted);text-wrap:pretty}
+.dt-body{font:400 19px/1.75 var(--serif-text);color:var(--fg)}
+.dt-body p{margin:18px 0}
+.dt-body strong{font-weight:700}
+.dt-h2{margin:44px 0 6px;font:600 27px/1.25 var(--serif);scroll-margin-top:24px}
+.dt-fig{margin:30px 0;padding:18px 20px;display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;align-items:start;border:1px solid var(--hair);border-radius:12px;background:var(--surface)}
+.dt-fig-ic{width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:rgba(var(--glow),.1);color:var(--accent)}
+.dt-fig figcaption{display:flex;flex-direction:column;gap:6px}
+.dt-fig .lab{font:600 11px/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.dt-fig .t{font:600 18px/1.3 var(--serif);color:var(--fg)}
+.dt-fig a{font:600 13.5px var(--sans);color:var(--accent);text-decoration:none;align-self:flex-start}
+.dt-fig a:hover{text-decoration:underline}
+.dt-pay{margin:26px 0 8px;padding:28px;border-radius:14px;border:1px solid var(--hair);background:var(--surface);text-align:center}
+.dt-pay-t{margin:0 0 6px;font:600 22px/1.25 var(--serif)}
+.dt-pay-d{margin:0 auto 18px;max-width:420px;font:400 15px/1.5 var(--sans);color:var(--muted)}
+.dt-pay-a{display:flex;gap:16px;justify-content:center;align-items:center}
+.dt-sub{all:unset;cursor:pointer;height:42px;padding:0 22px;border-radius:999px;display:inline-flex;align-items:center;background:var(--qn-chip);color:#fff;font:600 14px var(--sans)}
+.dt-sub:hover{background:var(--accent)}
+.dt-pay .reset,.dt-end .reset{all:unset;cursor:pointer;color:var(--accent);font:600 14px var(--sans);border-bottom:1px solid currentColor;align-self:flex-start}
+.dt-none{color:var(--muted);font-style:italic}
+.dt-phnote{margin:36px 0 -8px;padding-top:14px;border-top:1px dashed var(--hair);font:600 11px/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--tert)}
+/* fine articolo: il pezzo successivo, si continua a leggere senza chiudere */
+.dt-end{margin-top:56px;padding-top:22px;border-top:1px solid var(--hair);display:flex;flex-direction:column;gap:16px}
+.dt-next{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:10px;padding:16px;border-radius:14px;background:var(--surface);border:1px solid var(--hair);transition:border-color .2s,background .2s}
+.dt-next:hover{border-color:var(--accent)}
+.dt-next:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.dt-next .lab{font:500 13px var(--sans);color:var(--muted)}
+.dt-next .lab b{color:var(--accent);font-weight:600}
+.dt-next .row{display:grid;grid-template-columns:120px minmax(0,1fr) 40px;gap:16px;align-items:center}
+.dt-next .th{position:relative;width:120px;height:84px;border-radius:8px;overflow:hidden;background:var(--ph-bg)}
+.dt-next .tx{display:flex;flex-direction:column;gap:4px;min-width:0}
+.dt-next .k{font:400 13px var(--sans);color:var(--accent)}
+.dt-next .t{font:600 19px/1.25 var(--serif);color:var(--fg)}
+.dt-next .b{font:400 13px var(--serif-text);color:var(--tert)}
+.dt-next .go{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--fg);color:var(--bg);font:600 16px var(--sans);transition:translate .25s var(--e)}
+.dt-next:hover .go{translate:0 3px}
+.dt-endmsg{margin:0;font:400 17px var(--serif-text);color:var(--muted)}
+.dt-close{all:unset;cursor:pointer;position:absolute;top:16px;right:20px;z-index:3;display:flex;align-items:center;gap:8px;height:34px;padding:0 12px 0 14px;border-radius:999px;background:var(--surface);border:1px solid var(--hair);box-shadow:var(--pop-shadow);font:600 11.5px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--fg)}
+.dt-close:hover{border-color:var(--accent)}
+.dt-close:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.dt-bar,.dt-idxpop{display:none}
+/* mobile: una colonna, barra in alto con ritorno alla sezione, indice e avanzamento */
+.frame[data-layout="m"] .dt{grid-template-columns:1fr}
+.frame[data-layout="m"] .dt-side,.frame[data-layout="m"] .dt-close{display:none}
+.frame[data-layout="m"] .dt-bar{display:flex;position:sticky;top:0;z-index:4;height:48px;align-items:center;gap:6px;padding:0 8px;background:var(--surface);border-bottom:1px solid var(--hair)}
+.dt-x{all:unset;cursor:pointer;display:flex;align-items:center;gap:4px;height:40px;padding:0 8px 0 4px;border-radius:8px;font:600 14px var(--sans);color:var(--fg)}
+.dt-sp{flex:1}
+.dt-idxbtn{all:unset;cursor:pointer;height:32px;padding:0 12px;border-radius:999px;border:1px solid var(--hair);font:600 12.5px var(--sans);color:var(--fg)}
+.dt-idxbtn[aria-expanded="true"]{border-color:var(--accent);color:var(--accent)}
+.dt-idxbtn[hidden]{display:none}
+.dt-x:focus-visible,.dt-idxbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.dt-prog{position:absolute;left:0;bottom:-1px;height:2px;width:calc(var(--rp,0) * 100%);background:var(--accent)}
+.frame[data-layout="m"] .dt-idxpop:not([hidden]){display:block;position:absolute;top:56px;left:8px;right:8px;z-index:6;max-height:60%;overflow:auto;padding:6px 10px;border-radius:12px;background:var(--surface);border:1px solid var(--hair);box-shadow:var(--pop-shadow)}
+.frame[data-layout="m"] .dt-mph{display:block;position:relative;aspect-ratio:4/3;margin:0 -20px 18px;overflow:hidden;background:var(--ph-bg)}
+.frame[data-layout="m"] .dt-mph .badge{left:12px;bottom:12px}
+.frame[data-layout="m"] .dt-col{padding:0 20px 80px}
+.frame[data-layout="m"] .dt-title{font-size:28px;margin:10px 0 14px}
+.frame[data-layout="m"] .dt-lead{font-size:17px}
+.frame[data-layout="m"] .dt-body{font-size:17px;line-height:1.65}
+.frame[data-layout="m"] .dt-h2{font-size:22px;margin-top:34px}
+.frame[data-layout="m"] .dt-acts{margin-left:0}
+.frame[data-layout="m"] .dt-next .row{grid-template-columns:84px minmax(0,1fr) 34px;gap:12px}
+.frame[data-layout="m"] .dt-next .th{width:84px;height:64px}
+.frame[data-layout="m"] .dt-next .t{font-size:16.5px}
+.frame[data-layout="m"] .dt-next .go{width:34px;height:34px}
+.frame[data-theme="dark"] .dt-ph img,.frame[data-theme="dark"] .dt-mph img{filter:brightness(.88)}
+
+/* Dettaglio · refinement: spalla leggera, firma che compare scorrendo, azioni attive, griglia di fine articolo */
+.dt-guide > *{flex-shrink:0}
+.dt-cap{margin:-8px 0 0;font:400 12.5px/1.45 var(--sans);color:var(--tert);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.dt-mcap{display:none}
+.dt-col .dt-crumb{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 16px;padding-bottom:12px;border-bottom:1px solid var(--hair)}
+.dt-crumb a{color:var(--muted);text-decoration:none;border-radius:4px}
+.dt-crumb a:first-child{color:var(--fg);font-weight:600}
+.dt-crumb a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.dt-crumb a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.dt-crumb span{color:var(--tert)}
+.dt-ticks{display:flex;flex-direction:column;margin-top:2px}
+.dt-ticks a{display:flex;align-items:center;gap:12px;height:20px;text-decoration:none;color:var(--fg);border-radius:4px;min-width:0}
+.dt-ticks i{flex:none;width:12px;height:2px;border-radius:2px;background:rgba(var(--fg-rgb),.3);transition:width .35s var(--e),background .25s,height .2s}
+.dt-ticks span{font:600 13px/1.2 var(--sans);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:0;translate:-4px 0;transition:opacity .25s,translate .35s var(--e)}
+.dt-ticks a.read i{background:rgba(var(--glow),.45)}
+.dt-ticks a:hover span{opacity:.6;translate:0 0}
+.dt-ticks a[aria-current="true"] i{width:24px;height:3px;background:var(--accent)}
+.dt-ticks a[aria-current="true"] span{opacity:1;translate:0 0}
+.dt-ticks a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.dt-ticks a:focus-visible span{opacity:1}
+.dt-author{margin-top:auto;padding-top:14px;border-top:1px solid var(--hair);display:flex;flex-direction:column;gap:12px;opacity:0;translate:0 10px;pointer-events:none;transition:opacity .3s,translate .4s var(--e)}
+.dt.show-author .dt-author{opacity:1;translate:0 0;pointer-events:auto}
+.dt-author .by{margin:0;font:400 14px/1.4 var(--serif-text);color:var(--muted)}
+.dt-author .by span{display:block;font:400 12px var(--sans);color:var(--tert);margin-top:3px}
+.dt-actbox{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.dt-byrow .dt-actbox{margin-left:auto}
+.dt-author .dt-actbox .dt-acts{margin-left:auto}
+.dt-follow[aria-pressed="true"]{background:rgba(var(--glow),.1);border-color:var(--accent);color:var(--accent)}
+.dt-acts button{transition:background .2s,color .2s,border-color .2s}
+.dt-acts button.on{width:auto;padding:0 10px 0 8px;border-radius:999px;display:inline-flex;gap:4px;color:var(--accent);border-color:var(--accent)}
+.dt-acts button .n{font:600 12px var(--sans);font-variant-numeric:tabular-nums}
+.dt-acts button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.dt-acts button[aria-pressed="true"] path{fill:currentColor}
+.dt-acts button.pop{animation:clapPop .4s var(--e)}
+@keyframes clapPop{40%{scale:1.18}}
+/* griglia a due: affiancate su desktop, impilate su mobile; immagine sopra, testo sotto */
+.dt-end-h{margin:0;font:500 14px var(--sans);color:var(--muted)}
+.dt-end-h b{color:var(--accent);font-weight:600}
+.dt-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.dt-end .dt-next{padding:0;gap:0;overflow:hidden;display:flex;flex-direction:column;align-items:stretch}
+.dt-end .dt-next .th{position:relative;display:block;width:100%;height:auto;aspect-ratio:16/10;border-radius:0}
+.dt-end .dt-next .th .badge{left:12px;bottom:12px}
+.dt-end .dt-next .tx{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px}
+.dt-end .dt-next .k,.dt-end .dt-next .new{font:500 12.5px var(--sans);color:var(--muted)}
+.dt-end .dt-next .new{color:var(--accent);font-weight:600}
+.dt-end .dt-next .t{font:600 18px/1.25 var(--serif)}
+.dt-end .dt-next .b{font:400 13px/1.35 var(--serif-text);color:var(--tert)}
+.dt-end .dt-next:hover .t{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:4px;text-decoration-thickness:1px}
+.frame[data-layout="m"] .dt-grid{grid-template-columns:1fr}
+.frame[data-layout="m"] .dt-end .dt-next .th{width:100%;height:auto}
+.frame[data-layout="m"] .dt-end .dt-next .t{font-size:17px}
+.frame[data-layout="m"] .dt-mcap{display:block;margin:-10px 0 16px;font:400 12px/1.45 var(--sans);color:var(--tert)}
+.frame[data-layout="m"] .dt-byrow .dt-actbox{margin-left:0;width:100%}
+.frame[data-layout="m"] .dt-byrow .dt-acts{margin-left:auto}
+
+/* ---------- Header: azioni QN (Abbonati, Accedi, ricerca) ---------- */
+.qh-acts{display:flex;align-items:center;gap:16px;padding-right:16px}
+.qh-sub{all:unset;box-sizing:border-box;cursor:pointer;width:120px;height:32px;border-radius:999px;display:grid;place-items:center;background:var(--brand);color:#fff;font:600 14px/1 var(--sans);transition:background .2s}
+.qh-sub:hover{background:#0f3a6b}
+.qh-login{all:unset;cursor:pointer;font:600 14px/1 var(--sans);color:var(--fg);padding:6px 2px;border-radius:8px}
+.qh-login:hover{text-decoration:underline;text-underline-offset:4px}
+.qh-search{all:unset;box-sizing:border-box;cursor:pointer;width:32px;height:32px;border-radius:999px;display:grid;place-items:center;color:var(--fg);transition:background .2s}
+.qh-search:hover,.qh-search[aria-expanded="true"]{background:rgba(var(--fg-rgb),.07)}
+.qh-sub:focus-visible,.qh-login:focus-visible,.qh-search:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.frame[data-layout="m"] .qh-acts{gap:4px;padding-right:0}
+.frame[data-layout="m"] .qh-login{display:none}
+.frame[data-layout="m"] .qh-sub{width:auto;height:30px;padding:0 12px;font-size:13px}
+
+/* ---------- Ricerca con pre-filtro ---------- */
+.srch{position:absolute;inset:0;z-index:95;background:rgba(14,15,17,.6);display:flex;justify-content:center;align-items:flex-start;padding-top:min(128px,12%);opacity:0;transition:opacity .25s}
+.srch[hidden]{display:none}
+.srch.on{opacity:1}
+.srch-panel{width:min(800px,calc(100% - 32px));border-radius:4px;background:rgba(255,255,255,.8);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);padding-bottom:48px;box-shadow:0 30px 80px -30px rgba(0,0,0,.5);translate:0 -10px;transition:translate .35s var(--e)}
+.frame[data-theme="dark"] .srch-panel{background:rgba(11,24,29,.86)}
+.srch.on .srch-panel{translate:0 0}
+.srch-top{display:flex;justify-content:flex-end;padding:16px}
+.srch-x{all:unset;cursor:pointer;width:32px;height:32px;margin:-4px;border-radius:999px;display:grid;place-items:center;color:var(--fg)}
+.srch-x:hover{background:rgba(var(--fg-rgb),.08)}
+.srch-x:focus-visible{outline:2px solid var(--accent)}
+.srch-in{padding:0 48px}
+.srch-field{display:flex;align-items:center;gap:8px;height:44px;padding:0 12px;box-sizing:border-box;border:2px solid var(--brand);border-radius:4px;background:var(--surface)}
+.srch-ic{flex:none;color:var(--muted)}
+.srch-chips{display:flex;gap:6px;flex:none}
+.srch-chip{display:inline-flex;align-items:center;gap:2px;height:22px;padding:0 4px 0 8px;box-sizing:border-box;border:1px solid #bfc4cb;border-radius:4px;font:600 12px/1 var(--sans);color:var(--text-default-primary-hover,#3d434a);white-space:nowrap}
+.frame[data-theme="dark"] .srch-chip{color:var(--fg);border-color:rgba(199,240,250,.3)}
+.srch-chip button{all:unset;cursor:pointer;width:16px;height:16px;display:grid;place-items:center;border-radius:3px;color:inherit}
+.srch-chip button:hover{background:rgba(var(--fg-rgb),.08)}
+.srch-chip button:focus-visible{outline:2px solid var(--accent)}
+.srch-chip.sec{border-color:rgba(var(--glow),.45);color:var(--accent)}
+#srchQ{all:unset;flex:1;min-width:0;font:400 14px/1 var(--sans);color:var(--fg)}
+#srchQ::placeholder{color:var(--muted)}
+.srch-res{margin-top:14px}
+.srch-lab{margin:0 0 8px;font:var(--label);letter-spacing:var(--label-ls);text-transform:uppercase;color:var(--muted)}
+.srch-sugg{display:flex;flex-wrap:wrap;gap:8px}
+.srch-sugg button{all:unset;cursor:pointer;height:30px;padding:0 12px;border-radius:999px;background:rgba(var(--fg-rgb),.06);font:500 13px var(--sans);color:var(--fg)}
+.srch-sugg button:hover{background:rgba(var(--glow),.14)}
+.srch-sugg button:focus-visible{outline:2px solid var(--accent)}
+.srch-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.srch-r{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:grid;grid-template-columns:64px minmax(0,1fr);gap:12px;align-items:center;padding:8px;border-radius:6px}
+.srch-r:hover,.srch-r:focus-visible{background:rgba(var(--glow),.1)}
+.srch-r .th{position:relative;width:64px;height:48px;border-radius:4px;overflow:hidden;background:var(--ph-bg)}
+.srch-r .th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.srch-r .m{display:block;font:500 12px var(--sans);color:var(--muted)}
+.srch-r .m b{color:var(--accent);font-weight:600}
+.srch-r .t{display:block;font:600 16px/1.3 var(--serif);color:var(--fg);margin-top:2px}
+.srch-r mark{background:rgba(var(--glow),.22);color:inherit;border-radius:2px;padding:0 1px}
+.srch-note{margin:0;font:400 14px/1.5 var(--sans);color:var(--muted)}
+.srch-more{margin-top:12px;padding-top:12px;border-top:1px solid var(--hair);font-size:13px}
+.srch-note button{all:unset;cursor:pointer;color:var(--accent);font-weight:600;border-bottom:1px solid currentColor}
+.frame[data-layout="m"] .srch{padding-top:0}
+.frame[data-layout="m"] .srch-panel{width:100%;border-radius:0 0 12px 12px;padding-bottom:20px}
+.frame[data-layout="m"] .srch-in{padding:0 16px}
+.frame[data-layout="m"] .srch-top{padding:12px 12px 8px}
+
 /* ---------- Movimento ridotto ---------- */
 .rm .beam,.rm .blip{animation:none !important;opacity:0}
 .rm .ping{display:none}
@@ -698,6 +956,7 @@ body[data-view="mobile"] .frame{width:390px;height:min(820px,calc(100% - 44px));
     <button role="radio" data-th="light">Chiaro</button>
     <button role="radio" data-th="dark">Scuro</button>
   </div>
+  <button class="tb-btn" id="payBtn" aria-pressed="false" title="Simula il paywall sui pezzi a pagamento nel dettaglio"><span class="sw"></span>Paywall</button>
   <button class="tb-btn" id="rmBtn" aria-pressed="false"><span class="sw"></span>Movimento ridotto</button>
   <span class="tb-sp"></span>
   <button class="tb-btn" id="notesBtn" aria-expanded="false" aria-controls="notes">Note di progetto</button>
@@ -712,8 +971,29 @@ body[data-view="mobile"] .frame{width:390px;height:min(820px,calc(100% - 44px));
         <a href="#" tabindex="-1">Podcast</a><a href="#" tabindex="-1">Video</a><a href="#" tabindex="-1">Newsletter</a>
       </div>
       <a class="logo" href="#" tabindex="-1" aria-label="Quotidiano Nazionale"><span>QN</span></a>
-      <div class="qh-r" id="hdrR"></div>
+      <div class="qh-r"><span class="qh-slot" id="hdrR"></span>
+        <!-- azioni dell'header QN (bozza Figma “Navbar”): Abbonati, Accedi, ricerca -->
+        <div class="qh-acts">
+          <button type="button" class="qh-sub" data-hact="Abbonati">Abbonati</button>
+          <button type="button" class="qh-login" data-hact="Accedi">Accedi</button>
+          <button type="button" class="qh-search" id="searchBtn" aria-label="Cerca in Radar" aria-haspopup="dialog" aria-controls="search" aria-keyshortcuts="/"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m11 11 3.25 3.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        </div>
+      </div>
     </header>
+    <!-- Ricerca (bozza Figma “Blanket / Search”): pre-filtro sulla sezione da cui si parte -->
+    <div class="srch" id="search" role="dialog" aria-modal="true" aria-label="Cerca" hidden>
+      <div class="srch-panel">
+        <div class="srch-top"><button type="button" class="srch-x" aria-label="Chiudi la ricerca"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
+        <div class="srch-in">
+          <div class="srch-field">
+            <svg class="srch-ic" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m11 11 3.25 3.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span class="srch-chips"></span>
+            <input id="srchQ" type="text" placeholder="Descrivi l’informazione che cerchi" autocomplete="off" spellcheck="false" aria-label="Descrivi l’informazione che cerchi" aria-controls="srchRes">
+          </div>
+          <div class="srch-res" id="srchRes" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
     <div class="plate" aria-hidden="true">
       <svg class="rings" id="rings"></svg>
       <div class="core"></div><div class="axis"></div><div class="beam"></div><div class="ping" id="ping"></div>
@@ -725,8 +1005,19 @@ body[data-view="mobile"] .frame{width:390px;height:min(820px,calc(100% - 44px));
       <button class="stp" id="prev" aria-label="Approfondimento precedente"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
       <span class="cnt" id="cnt" aria-hidden="true"></span>
       <button class="stp" id="next" aria-label="Approfondimento successivo"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3.5 8.5 8 13l4.5-4.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <span class="nx-hint" id="nxHint" aria-hidden="true" hidden></span>
     </nav>
     <div id="nav"></div>
+    <!-- Dettaglio notizia (direzione A: colonna guida + fine articolo con il pezzo successivo, da B) -->
+    <section class="dt" id="detail" role="dialog" aria-modal="true" aria-labelledby="dtTitle" hidden>
+      <aside class="dt-side"><div class="dt-ph"></div><div class="dt-guide"></div></aside>
+      <div class="dt-main">
+        <div class="dt-bar"><button class="dt-x" type="button"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M11 3.5 5.5 9l5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="dt-x-t"></span></button><span class="dt-sp"></span><button class="dt-idxbtn" type="button" aria-expanded="false" aria-controls="dtIdxPop">Indice</button><i class="dt-prog" aria-hidden="true"></i></div>
+        <div class="dt-idxpop" id="dtIdxPop" hidden></div>
+        <div class="dt-content"></div>
+      </div>
+      <button class="dt-close" type="button" aria-label="Chiudi l’articolo">Chiudi <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M13.5 2.5 9 7M6.5 13.5h-4v-4M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" transform="rotate(180 8 8)"/></svg></button>
+    </section>
     <div class="toast" id="toast" role="status"></div>
     <p class="sr-only" aria-live="polite" id="live"></p>
   </div>
@@ -764,63 +1055,63 @@ const CATS5 = [
 ];
 const TO5 = {geopolitica:'geopolitica',politica:'geopolitica',economia:'economia',societa:'societa',giustizia:'societa',salute:'societa',istruzione:'societa',ambiente:'ambiente',mobilita:'ambiente',tecnologia:'tecnologia'};
 const EVID = {id:'evidenza', name:'In evidenza', desc:'La proposta della redazione: gli approfondimenti più recenti', reset:true, eyebrow:'Proposta di oggi', cta:'Vai alla proposta di oggi'};
-const TUTTE = {id:'tutte', name:'Tutte', desc:'Tutti gli approfondimenti pubblicati, dal più recente. Oggi in cima.', reset:true, eyebrow:'Archivio completo', cta:'Sfoglia tutti gli approfondimenti'};
+const TUTTE = {id:'tutte', name:'Radar', desc:'Tutti gli approfondimenti pubblicati, dal più recente. Oggi in cima.', reset:true, eyebrow:'Archivio completo', cta:'Sfoglia tutti gli approfondimenti'};
 const RESET = () => (S.variant === 'd' || S.variant === 'e') ? TUTTE : EVID;
 const isReset = id => id === 'evidenza' || id === 'tutte';
 
-// Articoli reali di quotidiano.net/radar (edizioni dal 18 al 25 novembre 2026), riclassificati nelle sezioni del brief.
+// Articoli reali di quotidiano.net/radar (edizioni dal 19 al 26 novembre 2026), riclassificati nelle sezioni del brief.
 // [categoria10, sottosezione (tassonomia a 5), occhiello, titolo, firme, giorni fa, lead]
 const RAW = [
- ['tecnologia','Digitale','Il test','Algoritmi e misoginia, su Instagram contenuti tossici dopo appena 15 video','Caterina Malanetto',0,'I risultati di un esperimento di ActionAid per capire il comportamento dei sistemi di raccomandazione delle piattaforme social'],
- ['geopolitica','Relazioni internazionali','L’andamento','Spagna, la rimonta di Sanchez potrebbe non bastare','Cosimo Firenzani',0,'Abbiamo calcolato la media dei sondaggi dal 2023 a oggi. Il Partito Popolare è avanti di poco ma dovrebbe allearsi con Vox: la simulazione'],
- ['societa','Diritti','25 novembre','Femminicidi, in due anni sono raddoppiate le chiamate al 1522','Libero Stracquadanio',0,'Ma solo il 15% sporge denuncia. Dal 2002 al 2024 gli uomini uccisi sono diminuiti del 53,6%, le donne uccise dal partner o dall’ex appena del 13,9%'],
- ['societa','Welfare','I numeri dell’accoglienza','Case rifugio, in Italia manca più della metà dei posti','Elena Aquilanti',0,'Dal 2017 le donne accolte nelle strutture sono quasi raddoppiate, ma l’Italia ha meno della metà dei posti indicati dal Consiglio d’Europa. Sei grafici raccontano la rete di accoglienza, dalla mappa delle regioni ai canali di accesso, fino a chi gestisce le strutture.'],
- ['societa','Disuguaglianze','Gli aiuti incompleti','Donne vittime di violenza: i fondi per il reddito di libertà non bastano per tutte','Bernardo Tombari',0,'Nel 2026 oltre mille domande di reddito di libertà, il contributo per le donne che escono dalla violenza, sono rimaste senza fondi: 62 su 142 nelle Marche. Tra le donne seguite dai centri antiviolenza, quattro su dieci hanno subito anche violenza economica'],
- ['giustizia','Giustizia','Nel mondo','Donne uccise, in Italia quasi tutte per mano di partner, ex o familiari: il primato (negativo)','Libero Stracquadanio',0,'Nel 2025, nel mondo, 47mila donne sono state uccise da partner, ex o familiari, il 60% del totale. L’Italia è tra i Paesi con meno omicidi, ma ha la quota più alta di vittime per mano degli affetti: l’85,7%'],
- ['salute','Salute','L’analisi','Gomito del tennista? È la schiena a mettere ko gli sportivi professionisti','Cosimo Firenzani',1,'Gli infortuni più frequenti tra racchette e palline e negli sport di squadra secondo i principali studi sul tema'],
- ['economia','Imprese','La desertificazione','I negozi di vicinato stanno scomparendo in tutta Italia','Francesco Savatteri',1,'Al loro posto, sempre più aziende di e-commerce e alloggi per affitti brevi, cresciuti del 184% dal 2012'],
- ['economia','Consumi','L’analisi','Il caffè è aumentato di 24 centesimi in 5 anni. Il più caro? A Bolzano','Cosimo Firenzani',1,'Sulla crescita la materia prima incide per meno del 30%: pesano di più affitti e bollette. Il contatore per capire se il prezzo è nella media oppure no'],
- ['economia','Finanza','Territorio','Il Sud ha i depositi ma non le filiali: un’impresa su 10 in un comune senza banca','Cosimo Firenzani',1,'Nei conti bancari ci sono 70 milioni di euro per sportello nel Mezzogiorno contro i 56 del Nord, ma il 12% dei cittadini non ha lo sportello vicino'],
- ['economia','Imprese','Come cambiano i quartieri','Addio al bar sotto casa, perse 22mila attività in dieci anni. Ma non tutti hanno chiuso','Bernardo Tombari',1,'Quattro imprese su 10 si sono lanciate in un altro settore, spesso quello della ristorazione. La dura vita del barista: restano aperti 14 ore al giorno con uno scontrino medio di 4,20 euro'],
- ['istruzione','Istruzione','Servizi cercasi','Nord-Sud, il divario è anche nelle mense scolastiche. E non diminuisce','Francesco Savatteri',2,'Una distanza non solo geografica, ma anche tra comuni ricchi e poveri dell’hinterland: in Italia la presenza di mense e palestre scolastiche dipende moltissimo da dove ci si trova'],
- ['salute','Salute','Malnutrizione','Bambini, nel mondo l’obesità supera il sottopeso','Lorenzo Buonarosa',2,'Nei Paesi ricchi i chili di troppo seguono le disuguaglianze di reddito, e in Italia quasi un bambino su tre è in sovrappeso, con il Sud ben sopra la media.'],
- ['salute','Salute','Crescono le richieste d’aiuto','Salute mentale, 75mila ragazzi al pronto soccorso. Mancano i letti per ricoverarli','Caterina Aurora Malanetto',2,'In Italia ci sono poco più di 5 letti di neuropsichiatria infantile ogni 100mila minori, contro i 7 indicati come minimo dall’Istituto superiore di sanità, e cinque regioni non ne hanno nemmeno uno.'],
- ['istruzione','Istruzione','Inflazione','Un anno scolastico alle superiori costa circa 1.500 euro. E gli aiuti cambiano con la regione','Elena Aquilanti',2,'Gli studenti che occupano le scuole protestano anche contro il rincaro dei libri. Lo Stato e le Regioni aiutano le famiglie, ma ognuno con le sue regole'],
- ['tecnologia','Digitale','Il fenomeno dell’anno','Gta VI, chi non giocava guardava: 8 milioni di spettatori al debutto','Lorenzo Buonarosa',3,'Nelle prime ventiquattro ore hanno seguito in contemporanea le dirette di chi ci giocava: superato di quattro volte il record precedente'],
- ['giustizia','Giustizia','L’inizio','Maxiprocesso di Palermo, come lo Stato portò Cosa nostra alla sbarra','Lorenzo Buonarosa',3,'Dalla seconda guerra di mafia al pool di Caponnetto, Falcone e Borsellino, fino alle rivelazioni di Buscetta e all’aula bunker dell’Ucciardone.'],
- ['giustizia','Sicurezza','La scia di violenza','Da 856 morti a 7: Cosa nostra ha imparato a non sparare','Libero Stracquadanio',3,'Dalle stragi del 1992 al silenzio: in Sicilia gli omicidi di mafia sono scesi da 856 a 7 in trent’anni. Cosa nostra ha cambiato strategia: meno violenza, più affari'],
- ['giustizia','Sicurezza','Guerra Stato-mafia','La mappa delle stragi di mafia del 1992-1993, da Capaci alle bombe di Roma, Firenze e Milano','Lorenzo Buonarosa',3,'Sette autobombe in quattordici mesi: sulla mappa i luoghi, il bilancio e il movente di ogni attentato. Il bersaglio si sposta dai magistrati ai luoghi pubblici'],
- ['giustizia','Giustizia','Le sedici leggi','La guerra dello Stato a Cosa nostra in 44 anni','Libero Stracquadanio',3,'Dalla Rognoni-La Torre al 41-bis. I boss al carcere duro e quanti sono oggi i pentiti'],
- ['giustizia','Giustizia','La storia','Cosa nostra e lo Stato: numeri, mappe e grafici della lotta alla mafia','Lorenzo Buonarosa|Libero Stracquadanio',4,'Nel 1986 inizia il maxiprocesso e per la prima volta la Cupola va alla sbarra. Cosa nostra risponde con le bombe di Capaci e via D’Amelio'],
- ['mobilita','Mobilità','Mobilità sostenibile','Bici e monopattini in sharing, le corse crescono ma gli operatori se ne vanno','Lorenzo Buonarosa',4,'Dal 2022 sedici capoluoghi sono rimasti senza bici e monopattini condivisi, quasi tutti al Centro-Sud. Le aziende del settore restano solo dove i conti tornano.'],
- ['mobilita','Mobilità','Sicurezza stradale','L’Italia ha 6mila km di ciclabili ma spesso sono solo una striscia di vernice','Caterina Aurora Malanetto',4,'Dal 2019 le ciclabili sono cresciute del 29%, ma restano in molti casi monconi non collegati tra loro. E nel 2025 i ciclisti morti sono tornati a salire.'],
- ['ambiente','Inquinamento','Contro lo smog','Blocco diesel Euro 5: dove (e quando) può entrare la tua auto','Libero Stracquadanio',4,'Il Senato ha spostato di un anno l’obbligo di fermare i diesel Euro 5 nelle Regioni del Nord. Ma tra divieti fissi, domeniche ecologiche e allarmi smog ogni città ha le sue regole'],
- ['mobilita','Città','L’analisi','Multe, i grandi comuni usano solo il 5% dei proventi per la mobilità sostenibile','Cosimo Firenzani',4,'Cerca il tuo comune: scopri quanto ha incassato di multe tra gennaio ed agosto 2026. Gli interventi realizzati con i proventi capoluogo per capoluogo'],
- ['geopolitica','Guerre','La guerra ibrida','Gli Usa sotto attacco: 945 colpi informatici in sette anni','Libero Stracquadanio',5,'Mentre Sean Cairncross lascia la cybersicurezza della Casa Bianca, il gruppo non ha rivendicato il furto di dati di clienti Visa, Mastercard e JPMorgan. Chi colpisce e con quali armi'],
- ['politica','Politica','Le manifestazioni','Sciopero generale, la mappa dei cortei in Italia','Cosimo Firenzani',5,'Al Nord 16 manifestazioni su 52. L’Emilia-Romagna è la regione con più città coinvolte'],
- ['mobilita','Mobilità','Trasporti in difficoltà','Treni, l’alta velocità è la meno puntuale: in orario solo sei su dieci','Elena Aquilanti',5,'Nel 2025 solo un utente su due ha promosso la puntualità dei treni, il dato più basso dal 2017'],
- ['salute','Salute','Sanità in ginocchio','Liste d’attesa, una ricetta su due non arriva nemmeno al Cup','Caterina Aurora Malanetto',5,'Nel 2026 oltre 4 milioni di prenotazioni sono fuori tempo massimo e 5,6 milioni di italiani rinunciano a curarsi'],
- ['mobilita','Infrastrutture','L’analisi','Cento opere pubbliche incompiute e ferme: non ci sono le condizioni per ripartire','Cosimo Firenzani',5,'Emerge da un’analisi dei documenti del Ministero delle infrastrutture: gli interventi valgono 1,5 miliardi'],
- ['economia','Industria','Le conseguenze dei conflitti','Prezzo del bitume alle stelle, 13mila cantieri a rischio','Libero Stracquadanio',5,'Il fondo dello Stato per i rincari nei lavori pubblici è sceso da 1,1 miliardi a 100 milioni in tre anni, mentre il bitume costa quasi due terzi in più.'],
- ['geopolitica','Migrazioni','L’odio online','Italiani nel mirino della propaganda anti-immigrazione: 76 milioni di visualizzazioni','Caterina Malanetto',6,'Un rapporto ricostruisce una campagna nascosta a base di video pubblicitari sul web'],
- ['tecnologia','Cybersicurezza','Guerra digitale','I cyber attacchi in Italia crescono di più che nel resto del mondo','Lorenzo Buonarosa',6,'Quelli gravi crescono in tutto il mondo e l’Italia ne subisce quasi uno su dieci. Gran parte sono azioni dimostrative di hacktivisti che bloccano un sito per pochi minuti'],
- ['tecnologia','Cybersicurezza','Il rischio quotidiano','Telecamere e router: le case diventano un bersaglio degli hacker','Elena Aquilanti',6,'Nel 2025 gli italiani hanno speso un miliardo per la casa intelligente'],
- ['tecnologia','Intelligenza artificiale','Sbarco a Wall Street','Anthropic, la più grande Ipo della storia e il precedente italiano','Libero Stracquadanio',6,'I modelli dell’azienda, il confronto impietoso con le realtà europee, chi comanda dentro l’impresa guidata da Amodei: tutto in cinque grafici'],
- ['geopolitica','Guerre','Il conflitto in Europa','Putin disegna la mappa dell’Ucraina, la guerra delle conquiste gonfiate','Antonio Del Prete',7,'L’Isw documenta il divario tra i bollettini del Cremlino e il controllo del territorio. Gonfiare i successi serve ad apparecchiare il tavolo dei negoziati'],
- ['economia','Lavoro','Manovra 2027','Stipendi, giovani e donne restano indietro. Perché la manovra non basta','Elena Aquilanti',7,'Nel settore privato un under 30 guadagna meno della metà di un over 55, una donna 8.134 euro l’anno in meno rispetto a un uomo. La manovra 2027 ha tre misure per giovani e donne, ma valgono un anno.'],
- ['economia','Redditi','I dati Ocse','Potere d’acquisto, l’Italia resta sotto il livello del 2007','Libero Stracquadanio',7,'Nel secondo trimestre il reddito reale delle famiglie è sceso dell’1% mentre il Pil cresceva. Stipendi fermi al 1990 e giovani a rischio povertà: chi soffre di più'],
- ['economia','Fisco','Manovra 2027','Partite Iva, una flat tax a metà','Lorenzo Buonarosa',7,'Con la manovra 2027 chi ha una partita IVA potrà pagare le tasse con l’aliquota fissa al 15% fino a 100mila euro di incassi l’anno, contro gli 85mila di oggi.'],
- ['economia','Fisco','I conti in tasca','Patrimoniale, anatomia di un tabù: tassare i ricchi e non farli scappare','Cosimo Firenzani',7,'La storia della misura che fa litigare tutti ogni volta. Le famiglie italiane restano tra quelle con i patrimoni più grandi in Europa'],
+ ['tecnologia','Digitale','Il test','Algoritmi e misoginia, su Instagram contenuti tossici dopo appena 15 video','Caterina Malanetto',1,'I risultati di un esperimento di ActionAid per capire il comportamento dei sistemi di raccomandazione delle piattaforme social'],
+ ['geopolitica','Relazioni internazionali','L’andamento','Spagna, la rimonta di Sanchez potrebbe non bastare','Cosimo Firenzani',1,'Abbiamo calcolato la media dei sondaggi dal 2023 a oggi. Il Partito Popolare è avanti di poco ma dovrebbe allearsi con Vox: la simulazione'],
+ ['societa','Diritti','25 novembre','Femminicidi, in due anni sono raddoppiate le chiamate al 1522','Libero Stracquadanio',1,'Ma solo il 15% sporge denuncia. Dal 2002 al 2024 gli uomini uccisi sono diminuiti del 53,6%, le donne uccise dal partner o dall’ex appena del 13,9%'],
+ ['societa','Welfare','I numeri dell’accoglienza','Case rifugio, in Italia manca più della metà dei posti','Elena Aquilanti',1,'Dal 2017 le donne accolte nelle strutture sono quasi raddoppiate, ma l’Italia ha meno della metà dei posti indicati dal Consiglio d’Europa. Sei grafici raccontano la rete di accoglienza, dalla mappa delle regioni ai canali di accesso, fino a chi gestisce le strutture.'],
+ ['societa','Disuguaglianze','Gli aiuti incompleti','Donne vittime di violenza: i fondi per il reddito di libertà non bastano per tutte','Bernardo Tombari',1,'Nel 2026 oltre mille domande di reddito di libertà, il contributo per le donne che escono dalla violenza, sono rimaste senza fondi: 62 su 142 nelle Marche. Tra le donne seguite dai centri antiviolenza, quattro su dieci hanno subito anche violenza economica'],
+ ['giustizia','Giustizia','Nel mondo','Donne uccise, in Italia quasi tutte per mano di partner, ex o familiari: il primato (negativo)','Libero Stracquadanio',1,'Nel 2025, nel mondo, 47mila donne sono state uccise da partner, ex o familiari, il 60% del totale. L’Italia è tra i Paesi con meno omicidi, ma ha la quota più alta di vittime per mano degli affetti: l’85,7%'],
+ ['salute','Salute','L’analisi','Gomito del tennista? È la schiena a mettere ko gli sportivi professionisti','Cosimo Firenzani',2,'Gli infortuni più frequenti tra racchette e palline e negli sport di squadra secondo i principali studi sul tema'],
+ ['economia','Imprese','La desertificazione','I negozi di vicinato stanno scomparendo in tutta Italia','Francesco Savatteri',2,'Al loro posto, sempre più aziende di e-commerce e alloggi per affitti brevi, cresciuti del 184% dal 2012'],
+ ['economia','Consumi','L’analisi','Il caffè è aumentato di 24 centesimi in 5 anni. Il più caro? A Bolzano','Cosimo Firenzani',2,'Sulla crescita la materia prima incide per meno del 30%: pesano di più affitti e bollette. Il contatore per capire se il prezzo è nella media oppure no'],
+ ['economia','Finanza','Territorio','Il Sud ha i depositi ma non le filiali: un’impresa su 10 in un comune senza banca','Cosimo Firenzani',2,'Nei conti bancari ci sono 70 milioni di euro per sportello nel Mezzogiorno contro i 56 del Nord, ma il 12% dei cittadini non ha lo sportello vicino'],
+ ['economia','Imprese','Come cambiano i quartieri','Addio al bar sotto casa, perse 22mila attività in dieci anni. Ma non tutti hanno chiuso','Bernardo Tombari',2,'Quattro imprese su 10 si sono lanciate in un altro settore, spesso quello della ristorazione. La dura vita del barista: restano aperti 14 ore al giorno con uno scontrino medio di 4,20 euro'],
+ ['istruzione','Istruzione','Servizi cercasi','Nord-Sud, il divario è anche nelle mense scolastiche. E non diminuisce','Francesco Savatteri',3,'Una distanza non solo geografica, ma anche tra comuni ricchi e poveri dell’hinterland: in Italia la presenza di mense e palestre scolastiche dipende moltissimo da dove ci si trova'],
+ ['salute','Salute','Malnutrizione','Bambini, nel mondo l’obesità supera il sottopeso','Lorenzo Buonarosa',3,'Nei Paesi ricchi i chili di troppo seguono le disuguaglianze di reddito, e in Italia quasi un bambino su tre è in sovrappeso, con il Sud ben sopra la media.'],
+ ['salute','Salute','Crescono le richieste d’aiuto','Salute mentale, 75mila ragazzi al pronto soccorso. Mancano i letti per ricoverarli','Caterina Aurora Malanetto',3,'In Italia ci sono poco più di 5 letti di neuropsichiatria infantile ogni 100mila minori, contro i 7 indicati come minimo dall’Istituto superiore di sanità, e cinque regioni non ne hanno nemmeno uno.'],
+ ['istruzione','Istruzione','Inflazione','Un anno scolastico alle superiori costa circa 1.500 euro. E gli aiuti cambiano con la regione','Elena Aquilanti',3,'Gli studenti che occupano le scuole protestano anche contro il rincaro dei libri. Lo Stato e le Regioni aiutano le famiglie, ma ognuno con le sue regole'],
+ ['tecnologia','Digitale','Il fenomeno dell’anno','Gta VI, chi non giocava guardava: 8 milioni di spettatori al debutto','Lorenzo Buonarosa',4,'Nelle prime ventiquattro ore hanno seguito in contemporanea le dirette di chi ci giocava: superato di quattro volte il record precedente'],
+ ['giustizia','Giustizia','L’inizio','Maxiprocesso di Palermo, come lo Stato portò Cosa nostra alla sbarra','Lorenzo Buonarosa',4,'Dalla seconda guerra di mafia al pool di Caponnetto, Falcone e Borsellino, fino alle rivelazioni di Buscetta e all’aula bunker dell’Ucciardone.'],
+ ['giustizia','Sicurezza','La scia di violenza','Da 856 morti a 7: Cosa nostra ha imparato a non sparare','Libero Stracquadanio',4,'Dalle stragi del 1992 al silenzio: in Sicilia gli omicidi di mafia sono scesi da 856 a 7 in trent’anni. Cosa nostra ha cambiato strategia: meno violenza, più affari'],
+ ['giustizia','Sicurezza','Guerra Stato-mafia','La mappa delle stragi di mafia del 1992-1993, da Capaci alle bombe di Roma, Firenze e Milano','Lorenzo Buonarosa',4,'Sette autobombe in quattordici mesi: sulla mappa i luoghi, il bilancio e il movente di ogni attentato. Il bersaglio si sposta dai magistrati ai luoghi pubblici'],
+ ['giustizia','Giustizia','Le sedici leggi','La guerra dello Stato a Cosa nostra in 44 anni','Libero Stracquadanio',4,'Dalla Rognoni-La Torre al 41-bis. I boss al carcere duro e quanti sono oggi i pentiti'],
+ ['giustizia','Giustizia','La storia','Cosa nostra e lo Stato: numeri, mappe e grafici della lotta alla mafia','Lorenzo Buonarosa|Libero Stracquadanio',5,'Nel 1986 inizia il maxiprocesso e per la prima volta la Cupola va alla sbarra. Cosa nostra risponde con le bombe di Capaci e via D’Amelio'],
+ ['mobilita','Mobilità','Mobilità sostenibile','Bici e monopattini in sharing, le corse crescono ma gli operatori se ne vanno','Lorenzo Buonarosa',5,'Dal 2022 sedici capoluoghi sono rimasti senza bici e monopattini condivisi, quasi tutti al Centro-Sud. Le aziende del settore restano solo dove i conti tornano.'],
+ ['mobilita','Mobilità','Sicurezza stradale','L’Italia ha 6mila km di ciclabili ma spesso sono solo una striscia di vernice','Caterina Aurora Malanetto',5,'Dal 2019 le ciclabili sono cresciute del 29%, ma restano in molti casi monconi non collegati tra loro. E nel 2025 i ciclisti morti sono tornati a salire.'],
+ ['ambiente','Inquinamento','Contro lo smog','Blocco diesel Euro 5: dove (e quando) può entrare la tua auto','Libero Stracquadanio',5,'Il Senato ha spostato di un anno l’obbligo di fermare i diesel Euro 5 nelle Regioni del Nord. Ma tra divieti fissi, domeniche ecologiche e allarmi smog ogni città ha le sue regole'],
+ ['mobilita','Città','L’analisi','Multe, i grandi comuni usano solo il 5% dei proventi per la mobilità sostenibile','Cosimo Firenzani',5,'Cerca il tuo comune: scopri quanto ha incassato di multe tra gennaio ed agosto 2026. Gli interventi realizzati con i proventi capoluogo per capoluogo'],
+ ['geopolitica','Guerre','La guerra ibrida','Gli Usa sotto attacco: 945 colpi informatici in sette anni','Libero Stracquadanio',6,'Mentre Sean Cairncross lascia la cybersicurezza della Casa Bianca, il gruppo non ha rivendicato il furto di dati di clienti Visa, Mastercard e JPMorgan. Chi colpisce e con quali armi'],
+ ['politica','Politica','Le manifestazioni','Sciopero generale, la mappa dei cortei in Italia','Cosimo Firenzani',6,'Al Nord 16 manifestazioni su 52. L’Emilia-Romagna è la regione con più città coinvolte'],
+ ['mobilita','Mobilità','Trasporti in difficoltà','Treni, l’alta velocità è la meno puntuale: in orario solo sei su dieci','Elena Aquilanti',6,'Nel 2025 solo un utente su due ha promosso la puntualità dei treni, il dato più basso dal 2017'],
+ ['salute','Salute','Sanità in ginocchio','Liste d’attesa, una ricetta su due non arriva nemmeno al Cup','Caterina Aurora Malanetto',6,'Nel 2026 oltre 4 milioni di prenotazioni sono fuori tempo massimo e 5,6 milioni di italiani rinunciano a curarsi'],
+ ['mobilita','Infrastrutture','L’analisi','Cento opere pubbliche incompiute e ferme: non ci sono le condizioni per ripartire','Cosimo Firenzani',6,'Emerge da un’analisi dei documenti del Ministero delle infrastrutture: gli interventi valgono 1,5 miliardi'],
+ ['economia','Industria','Le conseguenze dei conflitti','Prezzo del bitume alle stelle, 13mila cantieri a rischio','Libero Stracquadanio',6,'Il fondo dello Stato per i rincari nei lavori pubblici è sceso da 1,1 miliardi a 100 milioni in tre anni, mentre il bitume costa quasi due terzi in più.'],
+ ['geopolitica','Migrazioni','L’odio online','Italiani nel mirino della propaganda anti-immigrazione: 76 milioni di visualizzazioni','Caterina Malanetto',7,'Un rapporto ricostruisce una campagna nascosta a base di video pubblicitari sul web'],
+ ['tecnologia','Cybersicurezza','Guerra digitale','I cyber attacchi in Italia crescono di più che nel resto del mondo','Lorenzo Buonarosa',7,'Quelli gravi crescono in tutto il mondo e l’Italia ne subisce quasi uno su dieci. Gran parte sono azioni dimostrative di hacktivisti che bloccano un sito per pochi minuti'],
+ ['tecnologia','Cybersicurezza','Il rischio quotidiano','Telecamere e router: le case diventano un bersaglio degli hacker','Elena Aquilanti',7,'Nel 2025 gli italiani hanno speso un miliardo per la casa intelligente'],
+ ['tecnologia','Intelligenza artificiale','Sbarco a Wall Street','Anthropic, la più grande Ipo della storia e il precedente italiano','Libero Stracquadanio',7,'I modelli dell’azienda, il confronto impietoso con le realtà europee, chi comanda dentro l’impresa guidata da Amodei: tutto in cinque grafici'],
+ ['geopolitica','Guerre','Il conflitto in Europa','Putin disegna la mappa dell’Ucraina, la guerra delle conquiste gonfiate','Antonio Del Prete',8,'L’Isw documenta il divario tra i bollettini del Cremlino e il controllo del territorio. Gonfiare i successi serve ad apparecchiare il tavolo dei negoziati'],
+ ['ambiente','Territori','Il conto','Bonificare l’Italia costa 43 miliardi, due terzi servono per i siti più grandi','Francesco Savatteri',0,'Migliaia di chilometri quadrati contaminati, dove vivono milioni di persone. La parte più consistente riguarda i 42 siti di interesse nazionale, le aree più estese e inquinate, la cui bonifica spetta allo Stato.'],
+ ['ambiente','Inquinamento','Le conseguenze','Vivere in un sito contaminato: più tumori e una bonifica che non arriva','Elena Aquilanti',0,'Ci vive un italiano su dieci. E i tumori in quelle zone uccidono più che nel resto della Regione, i ricoveri dei neonati sono più frequenti e i terreni risanati sono meno di tre ettari su cento.'],
+ ['ambiente','Inquinamento','Suolo inquinato','Più di 6.500 siti contaminati ancora da bonificare, la mappa comune per comune','Bernardo Tombari',0,'I dati ISPRA comune per comune sui siti con la bonifica ancora aperta, e la mappa dei siti di interesse nazionale, da Casale Monferrato al Sulcis'],
+ ['ambiente','Territori','I dati europei','Suoli contaminati, 2,8 milioni di siti sospetti. L’Europa ne ha censiti meno della metà','Caterina Aurora Malanetto',0,'Nei registri nazionali ne risultano 1,38 milioni, e le bonifiche concluse sono l’8,3%. Al ritmo attuale servirebbero fino a 47 anni per renderli salubri'],
 ];
 const ART = RAW.map((r, i) => ({id:'a'+i, n:i, c:r[0], sub:r[1], kicker:r[2], title:r[3], authors:r[4].split('|'), d:r[5], lead:r[6], img:`img/r${String(i).padStart(2, '0')}.webp`}))
   .sort((a, b) => a.d - b.d || a.n - b.n);
-const fmtDate = (d, long) => new Date(2026, 10, 25 - d).toLocaleDateString('it-IT', long ? {day:'numeric', month:'long'} : {day:'numeric', month:'short'});
+const fmtDate = (d, long) => new Date(2026, 10, 26 - d).toLocaleDateString('it-IT', long ? {day:'numeric', month:'long'} : {day:'numeric', month:'short'});
 const relDate = d => d === 0 ? 'oggi' : d === 1 ? 'ieri' : fmtDate(d);
-const byline = a => { const n = a.authors.map(x => `<b>${esc(x)}</b>`); const s = n.length < 2 ? n[0] : n.slice(0, -1).join(', ') + ' e ' + n[n.length - 1]; return `di ${s} · ${relDate(a.d)}`; };
+const byline = a => { const n = a.authors.map(esc); const s = n.length < 2 ? n[0] : n.slice(0, -1).join(', ') + ' e ' + n[n.length - 1]; return `<i>di</i> ${s} · ${relDate(a.d)}`; };
 const bylineTxt = a => { const n = a.authors; return 'di ' + (n.length < 2 ? n[0] : n.slice(0, -1).join(', ') + ' e ' + n[n.length - 1]); };
 
 /* ---------------- Stato ---------------- */
-const S = {variant:'e', tax:5, view:'desktop', cat:'tutte', sub:null, idx:0, rm:false, links:true, theme:'auto'};
+const S = {variant:'e', tax:5, view:'desktop', cat:'tutte', sub:null, idx:0, rm:false, links:true, theme:'auto', endv:'a', open:null, paywall:false};
 // Sottosezioni della tassonomia a 5 (dal brief) e riclassificazione degli occhielli esistenti
 const SUBS5 = {
   geopolitica:['Guerre','Relazioni internazionali','Migrazioni','Politica','Istituzioni'],
@@ -893,17 +1184,17 @@ const on = (t, ev, fn, o) => { t.addEventListener(ev, fn, o); cleanups.push(() =
 /* ---------------- Geometria ---------------- */
 function geometry() {
   const W = frame.clientWidth, H = frame.clientHeight, m = W < 700;
-  const hh = m ? (S.variant === 'e' ? 64 : 56) : 76;
+  const hh = m ? (S.variant === 'e' ? 64 : 56) : 64; // header desktop 64 px come nella bozza Figma (prima 76)
   const g = {W, H, m, hh};
   // Proporzioni riprese dalla pagina live (25.11.2026): lo stage è una tela 1330×1024 scalata con
-  // k = min(altezza / 1024, larghezza / 1330); card 904×470, foto 44%, centro card a 1370 dal centro ruota, passo 30°.
+  // k = min(altezza / 1024, larghezza / 1330); card 904×396 (bozza Figma; il live usa 904×470), foto 44%, centro card a 1370 dal centro ruota, passo 30°.
   // Su mobile: card 74vw × clamp(370px, 64vh, 620px), foto 43%, passo 20,6° con raggio = 74vw / sin(20,6°).
   const MTHETA = 20.6265, MSIN = Math.sin(MTHETA * Math.PI / 180);
   if (!m) {
     const band = (S.variant === 'c' || S.variant === 'd') ? 52 : S.variant === 'e' ? 56 : 0, top = hh + band;
     const k = Math.min(H / 1024, W / 1330);
-    let cw = 904 * k, ch = 470 * k, center = W / 2, R = 1370 * k, cx = W / 2 - R;
-    if (S.variant === 'a') { const left = W > 1100 ? 470 : 430; cw = Math.max(300, Math.min(cw, W - left - 110)); ch = cw * 470 / 904; center = left + cw / 2; cx = 40; R = center - cx; }
+    let cw = 904 * k, ch = 396 * k, center = W / 2, R = 1370 * k, cx = W / 2 - R;
+    if (S.variant === 'a') { const left = W > 1100 ? 470 : 430; cw = Math.max(300, Math.min(cw, W - left - 110)); ch = cw * 396 / 904; center = left + cw / 2; cx = 40; R = center - cx; }
     Object.assign(g, {k, cx, pcx: 40, cy: H / 2 + 40 * k + band / 2, cw, ch, R, theta: 30, top});
     g.bs = Math.max(W, H) * 2.4;
     g.tfs = 40 * k; // il live usa 48: qui ridotto per lasciare aria a lead e firma
@@ -911,14 +1202,14 @@ function geometry() {
     // E mobile: "Radar" sopra la card, in basso la pulsantiera freccia · pill · freccia
     const top = hh + 58, cw = .74 * W, ch = Math.min(clamp(.64 * H, 370, 620), H - top - 100);
     const R = cw / MSIN, cardCy = top + ch / 2;
-    Object.assign(g, {k: 1, cx: W / 2, pcx: W / 2, cy: cardCy + R, cw, ch, R, theta: MTHETA, bs: (R + 400) * 2, tfs: 22, stepsy: cardCy - 20, wmy: hh + 12});
+    Object.assign(g, {k: 1, cx: W / 2, pcx: W / 2, cy: cardCy + R, cw, ch, R, theta: MTHETA, bs: (R + 400) * 2, tfs: 32, stepsy: cardCy - 20, wmy: hh + 12});
   } else {
     const bottom = S.variant === 'a' ? 148 : (S.variant === 'b' || S.variant === 'd' || S.variant === 'e') ? 132 : 122;
     const stepsy = H - bottom - 52;
     const top = hh + 18;
     const cw = .74 * W, ch = Math.min(clamp(.64 * H, 370, 620), stepsy - 14 - top);
     const R = cw / MSIN, cardCy = top + ch / 2;
-    Object.assign(g, {k: 1, cx: W / 2, pcx: W / 2, cy: cardCy + R, cw, ch, R, theta: MTHETA, bs: (R + 400) * 2, tfs: 22, stepsy, wmy: stepsy + 52 + 4});
+    Object.assign(g, {k: 1, cx: W / 2, pcx: W / 2, cy: cardCy + R, cw, ch, R, theta: MTHETA, bs: (R + 400) * 2, tfs: 32, stepsy, wmy: stepsy + 52 + 4});
   }
   G = g;
   const st = frame.style;
@@ -951,13 +1242,15 @@ function drawPlate() {
 }
 
 /* ---------------- Ruota degli approfondimenti (condivisa) ---------------- */
+// Card allineata alla bozza Figma (Focused story): sezione come badge sulla foto, occhiello sopra il titolo, firma come su quotidiano.net
+const xpIcon = `<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2.5h4v4M13.5 2.5 9 7M6.5 13.5h-4v-4M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 function cardHTML(a, i) {
   return `<div class="slot" data-i="${i}"><article class="card" aria-roledescription="approfondimento" aria-label="${esc(a.title)}">
-    <div class="ph">${thumb(a)}</div>
-    <div class="tx"><p class="kick"><span class="sec">${esc(secName(a))}</span><span>${esc(a.kicker)}</span></p>
-    <h2 class="tt"><button type="button" tabindex="-1" class="open">${esc(a.title)}</button></h2>
-    <p class="sm">${esc(a.lead)}</p>
-    <p class="by">${byline(a)}</p></div></article></div>`;
+    <div class="ph">${thumb(a)}<span class="badge">${esc(secName(a))}</span></div>
+    <div class="tx"><div class="tw"><p class="kick">${esc(a.kicker)}</p>
+    <h2 class="tt"><button type="button" tabindex="-1" class="open">${esc(a.title)}</button></h2></div>
+    <p class="by">${byline(a)}</p></div>
+    <button type="button" class="xp open" tabindex="-1" aria-label="Apri l’approfondimento">${xpIcon}</button></article></div>`;
 }
 function emptyHTML(c) {
   const nx = nextCat();
@@ -984,16 +1277,35 @@ function endHTML(c, n) {
       <span class="up-tx"><span class="up-lab">Prossimo · ${nx.wrap ? 'si ricomincia da' : 'cambi sezione:'} <b>${esc(nx.name)}</b></span>
         <span class="up-t">${esc(first.title)}</span><span class="up-b">${esc(bylineTxt(first))} · ${relDate(first.d)}</span></span>
     </button>` : '';
+  const back = `<button class="reset" type="button" tabindex="-1">Torna a ${esc(RESET().name)}</button>`;
+  // Tre proposte semplificate (selettore “Fine sezione” nella toolbar)
+  if (S.endv === 'a') { // 1 · Essenziale: dove sei + un’azione principale + un’uscita
+    const main = c.reset ? `<button class="go-next to-start" type="button" tabindex="-1">Torna al più recente <span aria-hidden="true">↑</span></button>`
+      : S.sub ? `<button class="go-next clear-sub" type="button" tabindex="-1">Tutta la sezione ${esc(c.name)} <span aria-hidden="true">→</span></button>`
+      : nx ? `<button class="go-next" type="button" tabindex="-1">${nx.wrap ? 'Ricomincia da' : 'Continua con'} ${esc(nx.name)} <span aria-hidden="true">→</span></button>` : '';
+    return `<div class="slot" data-i="${n}" data-end><div class="end-pan end-a" role="group" aria-label="Fine di ${where}">
+      <p class="end-k">Fine di ${where}</p><div class="end-act">${main}${c.reset ? '' : back}</div></div></div>`;
+  }
+  if (S.endv === 'b' && !c.reset && !S.sub && nx && first) { // 2 · Prossimo: il pezzo successivo è l’azione
+    return `<div class="slot" data-i="${n}" data-end><div class="end-pan end-b" role="group" aria-label="Fine di ${where}">
+      <button class="end-up go-next" type="button" tabindex="-1" aria-label="Prossimo, in ${esc(nx.name)}: ${esc(first.title)}">
+        <span class="up-th">${thumb(first)}</span>
+        <span class="up-tx"><span class="up-lab">Fine di ${where} · prossimo in <b>${esc(nx.name)}</b></span><span class="up-t">${esc(first.title)}</span></span>
+        <span class="up-go" aria-hidden="true">→</span>
+      </button>${back}</div></div>`;
+  }
   return `<div class="slot" data-i="${n}" data-end><div class="end-pan" role="group" aria-label="Fine di ${where}">
     <p class="end-k">Fine di ${where}</p>
     <p class="end-sum">${c.reset ? `Hai visto tutti i ${n} approfondimenti.` : S.sub ? (n === 1 ? `Hai visto l’unico approfondimento di ${esc(S.sub)}.` : `Hai visto tutti i ${n} approfondimenti di ${esc(S.sub)}.`) : sum}</p>
     ${upNext}
     <div class="end-act">${acts}</div></div></div>`;
 }
+// Proposta 3 · Nei comandi: nessun pannello; sull’ultimo pezzo la freccia “avanti” dichiara la sezione successiva
+const endInControls = () => S.endv === 'c';
 function renderWheel(dir = 0) {
   const list = curList(), c = catById(S.cat);
   const w = document.createElement('div'); w.className = 'wheel';
-  w.innerHTML = list.length ? list.map(cardHTML).join('') + endHTML(c, list.length) : emptyHTML(c);
+  w.innerHTML = list.length ? list.map(cardHTML).join('') + (endInControls() ? '' : endHTML(c, list.length)) : emptyHTML(c);
   const old = wheelEl; wheelEl = w;
   const animate = dir !== 0 && old && !RM();
   if (animate) {
@@ -1020,15 +1332,21 @@ function updateOffsets() {
     $('.card, .end-pan', s).setAttribute('aria-hidden', off === 0 ? 'false' : 'true');
   });
   const atEnd = S.idx >= n;
-  $('#prev').disabled = S.idx <= 0; $('#next').disabled = atEnd;
+  // Proposta 3: sull’ultimo pezzo la freccia avanti porta alla sezione successiva e lo dichiara
+  const c = catById(S.cat), nx = nextCat(), hint = $('#nxHint');
+  const ctrl = endInControls() && n > 0 && S.idx === n - 1 && !c.reset && !S.sub && !!nx;
+  hint.hidden = !ctrl; if (ctrl) hint.innerHTML = `${nx.wrap ? 'Ricomincia da' : 'Prossima sezione'} <b>${esc(nx.name)}</b>`;
+  $('#next').classList.toggle('to-sec', ctrl);
+  $('#next').setAttribute('aria-label', ctrl ? `Prossima sezione: ${nx.name}` : 'Approfondimento successivo');
+  $('#prev').disabled = S.idx <= 0; $('#next').disabled = endInControls() ? (S.idx >= n - 1 && !ctrl) : atEnd;
   $('#cnt').textContent = !n ? '0 / 0' : atEnd ? 'fine' : `${S.idx + 1} / ${n}`;
   nav?.onStep?.();
 }
 // La fine sezione è un punto d'arrivo: si prosegue solo con un'azione esplicita
-function step(d) {
-  const n = curList().length;
-  if (d > 0 && S.idx >= n) { bump(d); return; }
-  const ni = clamp(S.idx + d, 0, n);
+function step(d, fromBtn) {
+  const n = curList().length, last = endInControls() ? n - 1 : n;
+  if (d > 0 && S.idx >= last) { if (fromBtn && $('#next').classList.contains('to-sec')) goNext(); else bump(d); return; }
+  const ni = clamp(S.idx + d, 0, Math.max(0, last));
   if (ni === S.idx) { bump(d); return; }
   S.idx = ni; updateOffsets(); writeHash();
 }
@@ -1070,7 +1388,7 @@ function select(id, opt = {}) {
 const VA = {
   mount() {
     const cs = cats(), m = G.m;
-    hdrR.innerHTML = m ? `<span class="dateline">25.11.2026</span>` : `<span class="dateline">Mercoledì, 25 novembre 2026</span>`;
+    hdrR.innerHTML = ''; // data tolta dall'header (azioni QN a destra)
     navRoot.innerHTML = `
       <div class="a-bearing" aria-hidden="true"></div>
       <div class="needle" aria-hidden="true"></div><div class="needle ghost" aria-hidden="true"></div>
@@ -1193,7 +1511,7 @@ const VB = {
         ${this.idxHTML(cs)}`;
       this.bindRail(); this.bindIdx();
     } else {
-      hdrR.innerHTML = `<span class="dateline">25.11.2026</span>`;
+      hdrR.innerHTML = ''; // data tolta dall'header (azioni QN a destra)
       navRoot.innerHTML = trig + `
         <div class="scrim" hidden></div>
         <div class="sheet" id="bSheet" role="dialog" aria-modal="true" aria-label="Sezioni" hidden>
@@ -1227,11 +1545,11 @@ const VB = {
   bindRail() {
     const rail = $('.b-rail', navRoot), marks = $$('.b-mark', rail), lbl = $('.lbl', rail);
     const show = (e, b) => { const r = rail.getBoundingClientRect(); const y = e ? e.clientY - r.top : b.offsetTop + b.offsetHeight / 2;
-      marks.forEach(mk => { const c = mk.offsetTop + mk.offsetHeight / 2; mk.style.setProperty('--k', clamp(1 - Math.abs(c - y) / 46, 0, 1).toFixed(3)); });
+      marks.forEach(mk => { const c = mk.offsetTop + mk.offsetHeight / 2; mk.style.setProperty('--mk', clamp(1 - Math.abs(c - y) / 46, 0, 1).toFixed(3)); });
       const t = b || marks.reduce((best, mk) => Math.abs(mk.offsetTop + 6 - y) < Math.abs(best.offsetTop + 6 - y) ? mk : best, marks[0]);
       const c = catById(t.dataset.id); lbl.innerHTML = `${esc(c.name)}<span>${c.id === 'evidenza' ? 'oggi' : c.count}</span>`;
       lbl.style.setProperty('--y', (t.offsetTop + t.offsetHeight / 2) + 'px'); rail.dataset.hot = 'true'; this.railHot = t; };
-    const hide = () => { rail.dataset.hot = 'false'; marks.forEach(mk => mk.style.setProperty('--k', 0)); };
+    const hide = () => { rail.dataset.hot = 'false'; marks.forEach(mk => mk.style.setProperty('--mk', 0)); };
     on(rail, 'pointermove', e => show(e)); on(rail, 'pointerleave', hide);
     on(rail, 'click', e => { const t = e.target.closest('.b-mark') || this.railHot; if (t) select(t.dataset.id); });
     marks.forEach(mk => { on(mk, 'focus', () => show(null, mk)); on(mk, 'blur', hide); });
@@ -1327,7 +1645,7 @@ const VB = {
 const VC = {
   mount() {
     const cs = cats(), m = G.m;
-    hdrR.innerHTML = m ? `<span class="dateline">25.11.2026</span>` : `<span class="dateline">Mercoledì, 25 novembre 2026</span>`;
+    hdrR.innerHTML = ''; // data tolta dall'header (azioni QN a destra)
     navRoot.innerHTML = this.bandHTML(cs, m);
     this.bindBand(m);
   },
@@ -1423,7 +1741,7 @@ const VC = {
    VARIANTE D · INDICE + BANDA — sezioni sempre visibili con i numeri, indice come livello extra,
    cronologia come asse del tempo della sezione (rail di tacche desktop, linea del tempo mobile)
    ====================================================================== */
-const MONTH = d => new Date(2026, 10, 25 - d).toLocaleDateString('it-IT', {month:'short'}).replace('.', '');
+const MONTH = d => new Date(2026, 10, 26 - d).toLocaleDateString('it-IT', {month:'short'}).replace('.', '');
 const DAYS = 46;
 const VD = Object.assign({}, VB, {
   idxReserve: 118,
@@ -1437,7 +1755,7 @@ const VD = Object.assign({}, VB, {
       this.bindTl();
       return;
     }
-    hdrR.innerHTML = `<span class="dateline">Mercoledì, 25 novembre 2026</span>`;
+    hdrR.innerHTML = ''; // data tolta dall'header (azioni QN a destra)
     const trig = `<button class="d-idx" id="bTrig" aria-haspopup="dialog" aria-expanded="false" aria-controls="bIdx"><span style="color:var(--accent);display:flex">${glyph}</span>Indice<span class="pl">${plus}</span></button>`;
     navRoot.innerHTML = VC.bandHTML(cs, false, trig)
       + `<div class="d-rail" role="group" aria-label="Linea del tempo della sezione: una tacca per approfondimento, dal più recente"></div>`
@@ -1455,7 +1773,7 @@ const VD = Object.assign({}, VB, {
     let cols = '', mo = '';
     for (let d = DAYS - 1; d >= 0; d--) {
       cols += `<button class="dc" data-d="${d}" tabindex="${d === 0 ? 0 : -1}" aria-label="${fmtDate(d, true)}"><i></i></button>`;
-      const day = new Date(2026, 10, 25 - d).getDate();
+      const day = new Date(2026, 10, 26 - d).getDate();
       if (day === 1 || d === DAYS - 1) mo += `<span style="left:${((DAYS - 1 - d) / DAYS * 100).toFixed(2)}%">${day === 1 ? '1 ' : ''}${MONTH(d)}</span>`;
     }
     mo += `<span class="r">oggi</span>`;
@@ -1520,9 +1838,9 @@ const VD = Object.assign({}, VB, {
       lbl.innerHTML = `${fmtDate(a.d, true)}${isReset(S.cat) ? ` <span>${esc(secName(a))}</span>` : ''}<em>${esc(a.title)}</em>`;
       lbl.style.setProperty('--y', this.railY[i] + 'px'); rail.dataset.hot = 'true'; };
     on(rail, 'pointermove', e => { if (!this.railY?.length) return; const y = e.clientY - rail.getBoundingClientRect().top;
-      $$('.d-tk', rail).forEach((t, i) => t.style.setProperty('--k', clamp(1 - Math.abs(this.railY[i] - y) / 40, 0, 1).toFixed(3)));
+      $$('.d-tk', rail).forEach((t, i) => t.style.setProperty('--mk', clamp(1 - Math.abs(this.railY[i] - y) / 40, 0, 1).toFixed(3)));
       show(nearest(y)); });
-    on(rail, 'pointerleave', () => { rail.dataset.hot = 'false'; $$('.d-tk', rail).forEach(t => t.style.setProperty('--k', 0)); });
+    on(rail, 'pointerleave', () => { rail.dataset.hot = 'false'; $$('.d-tk', rail).forEach(t => t.style.setProperty('--mk', 0)); });
     on(rail, 'click', e => { if (!this.railY?.length) return; const i = nearest(e.clientY - rail.getBoundingClientRect().top); S.idx = i; updateOffsets(); writeHash(); });
     on(rail, 'focusin', e => { const t = e.target.closest('.d-tk'); if (t) show(+t.dataset.i); });
     on(rail, 'focusout', () => rail.dataset.hot = 'false');
@@ -1594,12 +1912,12 @@ const VE = {
   mount() {
     const cs = cats(), m = G.m;
     this.renderedKey = null; this.isOpen = false; this.pick = null; this.n = null; this.start = 0;
-    hdrR.innerHTML = m ? `<span class="dateline">25.11.2026</span>` : `<span class="dateline">Mercoledì, 25 novembre 2026</span>`;
+    hdrR.innerHTML = ''; // data tolta dall'header (azioni QN a destra)
     const empty = c => !c.reset && !c.count ? 'data-empty' : '';
     if (!m) {
       navRoot.innerHTML = `
         <nav class="e-row" aria-label="Sezioni di Radar"><div class="e-row-in">
-          <ul class="e-links">${cs.map(c => `<li><button class="e-lk" data-id="${c.id}" aria-controls="eLayer" aria-expanded="false" ${empty(c)}><span class="t" data-t="${esc(c.name)}">${esc(c.name)}</span><span class="n">${c.count}</span></button></li>`).join('')}</ul>
+          <ul class="e-links">${cs.map(c => `<li><button class="e-lk" data-id="${c.id}" aria-controls="eLayer" aria-expanded="false" ${empty(c)}><span class="t" data-t="${esc(c.name)}">${esc(c.name)}</span>${c.reset ? '' : `<span class="n">${c.count}</span>`}</button></li>`).join('')}</ul>
           <span class="e-sub" hidden><span class="t"></span><button type="button" aria-label="Rimuovi il filtro sottosezione">${xIcon}</button></span>
         </div></nav>
         <div class="e-scrim" hidden></div>
@@ -1611,7 +1929,7 @@ const VE = {
       this.bindDesk(); this.bindRail();
     } else {
       navRoot.innerHTML = `
-        <button class="e-mpill" id="ePill" aria-haspopup="dialog" aria-expanded="false" aria-controls="eSheet"><span class="g">${glyph}</span><span class="cur"></span><span class="n"></span><span class="pl">${chevUp}</span></button>
+        <button class="e-mpill" id="ePill" aria-haspopup="dialog" aria-expanded="false" aria-controls="eSheet"><span class="g">${glyph}</span><span class="cur"></span><span class="pl">${chevUp}</span></button>
         <div class="scrim" hidden></div>
         <div class="sheet" id="eSheet" role="dialog" aria-modal="true" aria-label="Sezioni" hidden>
           <div class="grab" aria-hidden="true"><i></i></div>
@@ -1629,8 +1947,8 @@ const VE = {
 
   /* --- contenuti del layer --- */
   chips(c) {
-    const subs = subsFor(c.id); if (!subs.length) return '';
-    return `<p class="e-lab">Sottosezioni</p><ul class="e-chips">${subs.map(s => `<li><button class="e-chip" data-id="${c.id}" data-sub="${esc(s.name)}" ${s.count ? '' : 'disabled'} aria-current="${c.id === S.cat && s.name === S.sub}">${esc(s.name)}<span>${s.count}</span></button></li>`).join('')}</ul>`;
+    const subs = subsFor(c.id).filter(s => s.count > 0); if (!subs.length) return ''; // solo sottosezioni con contenuti, senza numeri
+    return `<p class="e-lab">Sottosezioni</p><ul class="e-chips">${subs.map(s => `<li><button class="e-chip" data-id="${c.id}" data-sub="${esc(s.name)}" aria-current="${c.id === S.cat && s.name === S.sub}">${esc(s.name)}</button></li>`).join('')}</ul>`;
   },
   arts(c, k) {
     return `<ul class="e-arts">${listFor(c.id).slice(0, k).map(a => `<li><button class="e-art" data-id="${c.id}" data-a="${a.id}"><span class="th">${thumb(a)}</span><span class="tx2"><span class="k">${esc(c.reset ? secName(a) : subOf(a))}</span><span class="tt2">${esc(a.title)}</span><span class="b">${esc(bylineTxt(a))} · ${relDate(a.d)}</span></span></button></li>`).join('')}</ul>`;
@@ -1766,15 +2084,15 @@ const VE = {
       lbl.innerHTML = `${a.d === 0 ? '<b>Oggi</b>' : a.d === 1 ? 'Ieri' : fmtDate(a.d, true)}${isReset(S.cat) ? ` <span>${esc(secName(a))}</span>` : ''}<em>${esc(a.title)}</em>`;
       lbl.style.setProperty('--y', ((i - (this.start || 0)) * this.GAP + this.GAP / 2) + 'px'); rail.dataset.hot = 'true'; };
     on(rail, 'pointermove', e => { if (!this.n) return; const y = e.clientY - rail.getBoundingClientRect().top;
-      $$('.e-tk', rail).forEach((t, i) => t.style.setProperty('--k', clamp(1 - Math.abs((i - this.start) * this.GAP + this.GAP / 2 - y) / 36, 0, 1).toFixed(3)));
-      show(idxAt(y)); });
-    on(rail, 'pointerleave', () => { rail.dataset.hot = 'false'; $$('.e-tk', rail).forEach(t => t.style.setProperty('--k', 0)); });
+      $$('.e-tk', rail).forEach((t, i) => t.style.setProperty('--mk', clamp(1 - Math.abs((i - this.start) * this.GAP + this.GAP / 2 - y) / 36, 0, 1).toFixed(3)));
+      /* niente anteprima dell'articolo al passaggio: solo le tacche che si allungano */ });
+    on(rail, 'pointerleave', () => { rail.dataset.hot = 'false'; $$('.e-tk', rail).forEach(t => t.style.setProperty('--mk', 0)); });
     on(rail, 'click', e => { if (!this.n) return; S.idx = idxAt(e.clientY - rail.getBoundingClientRect().top); updateOffsets(); writeHash(); });
-    on(rail, 'focusin', e => { const t = e.target.closest('.e-tk'); if (t) show(+t.dataset.i); });
+    on(rail, 'focusin', e => { const t = e.target.closest('.e-tk'); /* nessuna anteprima al focus */ });
     on(rail, 'focusout', () => rail.dataset.hot = 'false');
     on(rail, 'keydown', e => { const k = e.key === 'ArrowDown' ? 1 : e.key === 'ArrowUp' ? -1 : 0; if (!k || !this.n) return;
       e.preventDefault(); e.stopPropagation(); S.idx = clamp(Math.min(S.idx, this.n - 1) + k, 0, this.n - 1); updateOffsets(); writeHash();
-      const t = $(`.e-tk[data-i="${S.idx}"]`, rail); t?.focus(); show(S.idx); });
+      const t = $(`.e-tk[data-i="${S.idx}"]`, rail); t?.focus(); });
   },
   stripRender() {
     const st = $('.e-strip', navRoot); if (!st) return;
@@ -1823,12 +2141,378 @@ const VE = {
   },
   onStep() {
     const n = curList().length;
-    if (G.m) { this.stripUpdate(); const el = $('#ePill .n'); if (el) el.textContent = n ? `${Math.min(S.idx + 1, n)}/${n}` : '0'; return; }
+    if (G.m) { this.stripUpdate(); return; }
     this.railUpdate();
   },
 };
 
 const VARIANTS = {a: VA, b: VB, c: VC, d: VD, e: VE};
+
+/* ======================================================================
+   DETTAGLIO NOTIZIA — direzione A (colonna guida: foto che si riduce, sezione, tempo di lettura,
+   indice di sottotitoli e grafici) + fine articolo di B (il pezzo successivo senza chiudere)
+   ====================================================================== */
+let BODY = null; // corpo reale degli articoli (data/articles.json, estratto da quotidiano.net)
+fetch('data/articles.json?v=4').then(r => r.ok ? r.json() : null).then(j => { if (j) { BODY = j; if (DT.cur) DT.render(artById(DT.cur)); } }).catch(() => {});
+const artById = id => ART.find(a => a.id === id);
+const bodyOf = a => (BODY && BODY[String(a.n)]) || null;
+const longDate = d => { const s = new Date(2026, 10, 26 - d).toLocaleDateString('it-IT', {weekday:'long', day:'numeric', month:'long', year:'numeric'}); return s.charAt(0).toUpperCase() + s.slice(1); };
+const chartIcon = `<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 19h16M5.5 16v-5M10 16V6M14.5 16v-8M19 16v-3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`;
+const ico = {
+  clap: `<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M6.5 8.5 4 6a1.2 1.2 0 0 1 1.7-1.7l3.8 3.8M7.7 6.2 6.4 4.9a1.2 1.2 0 0 1 1.7-1.7l4.6 4.6c1.8 1.8 1.8 4.6 0 6.4a4.5 4.5 0 0 1-6.4 0L3 10.9a1.2 1.2 0 0 1 1.7-1.7l1.8 1.8M10.5 2V1M13 3l.7-.7M14.5 5.5h1" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  save: `<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M5 2.5h8a1 1 0 0 1 1 1v12l-5-3.2-5 3.2v-12a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>`,
+  share: `<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 11.5V2.5M5.5 6 9 2.5 12.5 6M4 9.5v5.5h10V9.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+};
+const wordsOf = blocks => blocks.filter(x => x.t !== 'fig').reduce((s, x) => s + x.x.replace(/<[^>]+>/g, '').split(/\s+/).length, 0);
+function readMin(blocks) { return blocks.length ? Math.max(1, Math.round(wordsOf(blocks) / 200)) : null; }
+
+/* Testo segnaposto: allunga i pezzi senza testo (a pagamento) o molto corti, per vedere uno scroll realistico.
+   Frasi generiche sul tema della sottosezione, senza dati inventati; i blocchi sono marcati (ph) e preceduti da una nota. */
+const PH_H2 = ['Il quadro generale', 'Dove succede', 'Il confronto con l’Europa', 'Chi è più esposto', 'Cosa dicono i dati regionali',
+  'Le risorse e i ritardi', 'Cosa cambia adesso', 'Le domande aperte', 'Le regole in vigore', 'Uno sguardo agli ultimi dieci anni'];
+const PH_P = [
+  'Il quadro che emerge dai dati su {t} non è uniforme. Le differenze tra territori restano ampie e, guardando le serie storiche, si vede come i miglioramenti degli ultimi anni siano stati più lenti del previsto. In molti casi le statistiche ufficiali arrivano con mesi di ritardo, e questo rende difficile valutare l’effetto delle misure appena adottate.',
+  'Per capire la portata del fenomeno bisogna partire da come viene misurato. Le fonti disponibili non sempre usano le stesse definizioni, e il confronto tra anni diversi richiede cautela. Abbiamo messo insieme i dati pubblici più recenti, verificando per ciascuna serie il periodo di riferimento e il metodo di raccolta.',
+  'Le differenze più marcate riguardano il Mezzogiorno e le aree interne, dove i servizi sono più radi e le distanze più lunghe. Ma anche nelle grandi città il dato medio nasconde situazioni molto diverse da un quartiere all’altro, che le statistiche aggregate faticano a restituire.',
+  'Chi lavora sul campo descrive una situazione in cui le risorse arrivano a intermittenza. I bandi si susseguono, ma i tempi tra l’assegnazione dei fondi e la realizzazione degli interventi restano lunghi, e una parte dei progetti si ferma prima di arrivare a compimento.',
+  'Il confronto con gli altri Paesi europei aiuta a mettere le cose in prospettiva. Su alcuni indicatori l’Italia è in linea con la media, su altri resta indietro da anni. A pesare sono soprattutto la frammentazione delle competenze tra Stato, Regioni e Comuni e la difficoltà di mantenere nel tempo gli investimenti avviati.',
+  'Negli ultimi mesi il tema è tornato al centro del dibattito pubblico. Le associazioni chiedono più trasparenza sui dati e tempi certi, mentre le amministrazioni rivendicano i passi avanti fatti. Il punto, però, è capire quanto di quanto annunciato si traduca davvero in cambiamenti misurabili.',
+  'Dietro i numeri ci sono persone e territori. Le storie raccolte nelle diverse regioni raccontano di attese lunghe, di procedure complesse e di una distanza ancora ampia tra ciò che le norme prevedono e ciò che accade nella pratica quotidiana.',
+  'Le regole in vigore stabiliscono obiettivi chiari, ma lasciano margini ampi su come raggiungerli. Il risultato è un sistema a più velocità, in cui alcune realtà hanno già raggiunto i traguardi fissati e altre sono ancora lontane dal farlo.',
+  'Guardando all’andamento dell’ultimo decennio, la tendenza è di un miglioramento lento ma costante, interrotto in alcuni anni da battute d’arresto legate a crisi economiche o a cambi nelle priorità di spesa. La domanda è se il ritmo attuale sia sufficiente a colmare il divario nei prossimi anni.',
+  'Restano diverse domande aperte. Quanto inciderà la prossima legge di bilancio? Le risorse europee saranno spese nei tempi previsti? E soprattutto: i dati che oggi descrivono {t} saranno aggiornati con la frequenza necessaria per accorgersi in tempo di cosa funziona e cosa no?',
+];
+const PH_FIG = ['Come è cambiato il dato su {t} negli ultimi dieci anni', 'La mappa, regione per regione', 'Il confronto con gli altri Paesi europei',
+  'Chi è più esposto: le differenze per età e territorio', 'Le risorse stanziate e quelle effettivamente spese'];
+function withPlaceholder(a, real, target = 1150) {
+  if (wordsOf(real) >= 900) return real;
+  const r = rng(a.n + 101), pick = arr => arr[Math.floor(r() * arr.length)], t = subOf(a).toLowerCase();
+  const out = real.slice(), usedH = new Set(), usedP = new Set(), usedF = new Set();
+  let w = wordsOf(real), first = true, sinceFig = 0;
+  while (w < target) {
+    let h; do { h = pick(PH_H2); } while (usedH.has(h) && usedH.size < PH_H2.length); usedH.add(h);
+    out.push({t: 'h2', x: h, ph: first ? 'start' : 1}); first = false;
+    const nP = 3 + Math.floor(r() * 2);
+    for (let i = 0; i < nP && w < target + 80; i++) {
+      let p; do { p = Math.floor(r() * PH_P.length); } while (usedP.has(p) && usedP.size < PH_P.length);
+      if (usedP.size >= PH_P.length) usedP.clear(); usedP.add(p);
+      const x = PH_P[p].replace(/\{t\}/g, esc(t)); out.push({t: 'p', x, ph: 1}); w += x.split(/\s+/).length;
+    }
+    if (++sinceFig >= 1 && usedF.size < 3) {
+      let f; do { f = pick(PH_FIG); } while (usedF.has(f)); usedF.add(f);
+      out.push({t: 'fig', x: f.replace(/\{t\}/g, t), ph: 1}); sinceFig = 0;
+    }
+  }
+  return out;
+}
+const DT = {
+  cur: null,
+  init() {
+    this.state = {follow: new Set(), saved: new Set(), claps: {}}; // stato delle azioni (Segui, applausi, segnalibri)
+    this.el = $('#detail'); this.main = $('.dt-main', this.el); this.content = $('.dt-content', this.el);
+    this.guide = $('.dt-guide', this.el); this.ph = $('.dt-ph', this.el); this.pop = $('#dtIdxPop');
+    this.el.appendChild(this.pop); // fuori dall'area che scorre, così resta fermo sotto la barra
+    $('.dt-close', this.el).addEventListener('click', () => this.close());
+    $('.dt-x', this.el).addEventListener('click', () => this.close());
+    $('.dt-idxbtn', this.el).addEventListener('click', () => this.toggleIndex());
+    this.main.addEventListener('scroll', () => this.onScroll(), {passive: true});
+    this.el.addEventListener('click', e => {
+      const go = e.target.closest('[data-goto]'); if (go) { e.preventDefault(); this.scrollTo(go.dataset.goto); this.closeIndex(); return; }
+      const cr = e.target.closest('[data-crumb]'); // breadcrumb: apre la sezione (o la sottosezione) nel carosello
+      if (cr) { e.preventDefault(); this.close({push: false}); select(cr.dataset.crumb, {sub: cr.dataset.crumbSub || null}); return; }
+      const nx = e.target.closest('.dt-next'); if (nx) { this.goTo(+nx.dataset.i); return; }
+      if (e.target.closest('.dt-back')) { this.close(); return; }
+      const act = e.target.closest('[data-act]'); if (act) { this.act(act.dataset.act, act); return; }
+    });
+    this.el.addEventListener('keydown', e => { if (e.key === 'Tab') { // focus dentro il dettaglio
+      const f = $$('button, a[href]', this.el).filter(x => x.offsetParent && !x.closest('[hidden]')); const a = f[0], z = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === a) { e.preventDefault(); z.focus(); } else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus(); } } });
+  },
+  isOpen() { return !!this.cur; },
+  // pezzo successivo: nella sezione corrente; dopo l’ultimo, il primo della sezione successiva
+  nextOf(a) {
+    const L = curList(), i = L.findIndex(x => x.id === a.id), c = catById(S.cat);
+    if (i >= 0 && i < L.length - 1) return {a: L[i + 1]};
+    if (c.reset || S.sub) return null;
+    const nx = nextCat(); if (!nx) return null;
+    return {a: listFor(nx.id)[0], sec: nx};
+  },
+  // i due pezzi successivi: nella sezione corrente, poi (se finisce) i primi della sezione successiva
+  nextItems(a) {
+    const L = curList(), i = L.findIndex(x => x.id === a.id), c = catById(S.cat), out = [];
+    for (let k = i + 1; k < L.length && out.length < 2; k++) out.push({a: L[k]});
+    if (out.length < 2 && !c.reset && !S.sub) {
+      const nx = nextCat();
+      if (nx) listFor(nx.id).slice(0, 2 - out.length).forEach(x => out.push({a: x, sec: nx}));
+    }
+    return out;
+  },
+  // azioni condivise tra riga firma e spalla: stesso stato, stessi pulsanti
+  actsHTML(a) {
+    const st = this.state, key = a.authors.join('|'), claps = st.claps[a.id] || 0;
+    return `<button type="button" class="dt-follow" data-act="follow" aria-pressed="${st.follow.has(key)}">${st.follow.has(key) ? '✓ Segui già' : '+ Segui'}</button>
+      <span class="dt-acts">
+        <button type="button" data-act="clap" aria-label="Applaudi${claps ? `, ${claps} applausi` : ''}" class="${claps ? 'on' : ''}">${ico.clap}${claps ? `<span class="n">${claps}</span>` : ''}</button>
+        <button type="button" data-act="save" aria-pressed="${st.saved.has(a.id)}" aria-label="${st.saved.has(a.id) ? 'Rimuovi dai segnalibri' : 'Salva nei segnalibri'}">${ico.save}</button>
+        <button type="button" data-act="share" aria-label="Condividi l’articolo">${ico.share}</button></span>`;
+  },
+  act(name, btn) {
+    const a = artById(this.cur); if (!a) return;
+    const st = this.state, key = a.authors.join('|');
+    if (name === 'follow') { st.follow.has(key) ? st.follow.delete(key) : st.follow.add(key); toast(st.follow.has(key) ? `Ora segui ${a.authors.join(', ')}` : 'Non segui più l’autore'); }
+    else if (name === 'clap') { st.claps[a.id] = (st.claps[a.id] || 0) + 1; }
+    else if (name === 'save') { st.saved.has(a.id) ? st.saved.delete(a.id) : st.saved.add(a.id); toast(st.saved.has(a.id) ? 'Salvato nei segnalibri' : 'Rimosso dai segnalibri'); }
+    else if (name === 'share') {
+      const url = location.href;
+      const done = () => toast('Link all’articolo copiato');
+      try { navigator.clipboard.writeText(url).then(done, () => toast('Copia il link dalla barra degli indirizzi')); } catch (e) { toast('Copia il link dalla barra degli indirizzi'); }
+      return;
+    }
+    else { toast(name + ': azione non attiva nel prototipo'); return; }
+    $$('.dt-actbox', this.el).forEach(box => { box.innerHTML = this.actsHTML(a); });
+    if (name === 'clap') $$('[data-act="clap"]', this.el).forEach(b => { b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); });
+  },
+  render(a) {
+    const b = bodyOf(a), paid = !!(b && b.paid), gate = paid && S.paywall;
+    // senza paywall simulato i pezzi a pagamento (e quelli corti) si allungano con testo segnaposto
+    const real = gate ? [] : (b ? b.blocks : []);
+    const blocks = gate ? [] : withPlaceholder(a, real);
+    const c = catById(S.cat), backLabel = S.sub ? S.sub : c.name, min = readMin(blocks);
+    const figs = blocks.filter(x => x.t === 'fig').length;
+    const names = a.authors.map(esc), who = names.length < 2 ? names[0] : names.slice(0, -1).join(', ') + ' e ' + names[names.length - 1];
+    const cap = (b && b.cap) || 'Foto d’archivio';
+    let hi = 0, fi = 0; const chapters = [];
+    const blockHTML = x => {
+      if (x.t === 'h2') { const id = 'dt-h' + (hi++); chapters.push({id, x: x.x.replace(/<[^>]+>/g, '')}); return `<h2 class="dt-h2" id="${id}" data-mark>${x.x}</h2>`; }
+      if (x.t === 'fig') { const id = 'dt-f' + (fi++); return `<figure class="dt-fig" id="${id}"><span class="dt-fig-ic">${chartIcon}</span><figcaption><span class="lab">${x.ph ? 'Grafico segnaposto' : 'Grafico interattivo'}</span><span class="t">${esc(x.x)}</span>${x.u ? `<a href="${esc(x.u)}" target="_blank" rel="noopener">Apri il grafico <span aria-hidden="true">↗</span></a>` : ''}</figcaption></figure>`; }
+      return `<p>${x.x}</p>`;
+    };
+    const bodyHTML = blocks.map(x => (x.ph === 'start' ? `<p class="dt-phnote">${real.length ? 'Da qui testo segnaposto, per simulare la lunghezza reale del pezzo' : 'Testo segnaposto: il pezzo originale è riservato agli abbonati'}</p>` : '') + blockHTML(x)).join('');
+    // capitoli: in spalla solo tacche (la corrente con il titolo, come il rail accanto a “Radar”); su mobile elenco nel menu Indice
+    const chap = chapters.length ? [{id: 'dt-top', x: 'Inizio'}, ...chapters] : [];
+    const ticksHTML = chap.length ? `<nav class="dt-ticks" aria-label="Capitoli dell’articolo">${chap.map((e, i) => `<a href="#" data-goto="${e.id}" aria-label="${esc(e.x)}"><i></i><span>${esc(e.x)}</span></a>`).join('')}</nav>` : '';
+    const listHTML = chap.length ? `<nav class="dt-index" aria-label="Capitoli dell’articolo"><ol>${chap.map(e => `<li><a href="#" data-goto="${e.id}"><span>${esc(e.x)}</span></a></li>`).join('')}</ol></nav>` : '';
+    const meta = gate ? 'Riservato agli abbonati' : [min ? `${min} min di lettura` : '', paid ? 'per abbonati' : ''].filter(Boolean).join(' · ');
+    const items = this.nextItems(a);
+    const body = gate ? `<div class="dt-pay"><p class="dt-pay-t">Questo approfondimento è riservato agli abbonati</p><p class="dt-pay-d">Abbonati a QN per leggere l’analisi completa, i grafici interattivi e i dati.</p><div class="dt-pay-a"><button type="button" class="dt-sub" data-act="Abbonati">Abbonati</button><button type="button" class="reset" data-act="Accedi">Accedi</button></div></div>`
+      : bodyHTML || `<p class="dt-none">Il testo completo non è disponibile in questa anteprima.</p>`;
+    // fine articolo: griglia a due (affiancate su desktop, impilate su mobile)
+    const head = c.reset ? 'Continua a leggere' : items.some(x => x.sec) && !items.some(x => !x.sec) ? `Fine di ${esc(c.name)} · continua con <b>${esc(items[0].sec.name)}</b>` : `Continua a leggere in <b>${esc(backLabel)}</b>`;
+    const end = `<section class="dt-end" aria-label="Fine dell’articolo">
+      ${items.length ? `<p class="dt-end-h">${head}</p><div class="dt-grid">${items.map((x, i) => `<button type="button" class="dt-next" data-i="${i}">
+          <span class="th">${thumb(x.a)}${x.sec ? `<span class="badge">${esc(x.sec.name)}</span>` : ''}</span>
+          <span class="tx">${x.sec && !c.reset ? `<span class="new">Nuova sezione</span>` : `<span class="k">${i === 0 ? 'Prossimo articolo' : 'Dopo'}</span>`}
+          <span class="t">${esc(x.a.title)}</span><span class="b"><i>di</i> ${esc(x.a.authors.join(', '))} · ${relDate(x.a.d)}</span></span></button>`).join('')}</div>`
+        : `<p class="dt-endmsg">Hai letto tutti gli approfondimenti di ${esc(backLabel)}.</p>`}
+      <button type="button" class="reset dt-back">Torna a ${esc(backLabel)}</button></section>`;
+    this.items = items;
+    this.ph.innerHTML = `${thumb(a)}<span class="badge">${esc(secName(a))}</span>`;
+    this.guide.innerHTML = `<p class="dt-cap">${esc(cap)}</p><p class="dt-meta">${meta}</p>
+      <div class="dt-author" aria-hidden="true"><p class="by"><i>di</i> ${who}<span>${longDate(a.d)}</span></p><div class="dt-actbox">${this.actsHTML(a)}</div></div>`;
+    this.pop.innerHTML = listHTML;
+    $('.dt-idxbtn', this.el).hidden = !listHTML;
+    $('.dt-x-t', this.el).textContent = backLabel;
+    this.content.innerHTML = `<article class="dt-col" id="dt-top">
+      <figure class="dt-mph">${thumb(a)}<span class="badge">${esc(secName(a))}</span></figure><p class="dt-mcap">${esc(cap)}</p>
+      <nav class="dt-crumb" aria-label="Sezione dell’articolo"><a href="#" data-crumb="${catOf(a)}">${esc(secName(a))}</a><span aria-hidden="true">›</span><a href="#" data-crumb="${catOf(a)}" data-crumb-sub="${esc(subOf(a))}">${esc(subOf(a))}</a></nav>
+      <p class="kick">${esc(a.kicker)}</p>
+      <h1 class="dt-title" id="dtTitle" tabindex="-1">${esc(a.title)}</h1>
+      <div class="dt-byrow"><p class="by"><i>di</i> ${who} · ${relDate(a.d)}</p><div class="dt-actbox">${this.actsHTML(a)}</div></div>
+      <p class="dt-lead">${esc(a.lead)}</p>
+      <div class="dt-body">${body}</div>${end}</article>`;
+    this.main.scrollTop = 0; this.el.classList.remove('show-author');
+    // quando la riga firma esce dalla vista, firma e azioni compaiono in spalla
+    this.io?.disconnect();
+    if ('IntersectionObserver' in window) {
+      this.io = new IntersectionObserver(([en]) => { const show = !en.isIntersecting && en.boundingClientRect.top < en.rootBounds.top + 40; this.el.classList.toggle('show-author', show); $('.dt-author', this.el)?.setAttribute('aria-hidden', !show); }, {root: this.main, threshold: 0});
+      this.io.observe($('.dt-byrow', this.content));
+    }
+    this.onScroll();
+  },
+  // passa a uno dei due pezzi della griglia restando nel dettaglio; la ruota dietro si allinea
+  goTo(i) {
+    const x = this.items && this.items[i]; if (!x) return;
+    if (x.sec) select(x.sec.id, {sub: null, idx: listFor(x.sec.id).findIndex(y => y.id === x.a.id), dir: 1, fromHistory: true});
+    else { S.idx = curList().findIndex(y => y.id === x.a.id); updateOffsets(); }
+    const col = $('.dt-col', this.content);
+    const swap = () => { this.cur = x.a.id; S.open = x.a.id; this.render(x.a); $('.dt-col', this.content)?.classList.add('enter'); writeHash(true); $('#dtTitle')?.focus({preventScroll: true}); };
+    if (col && !RM()) { col.classList.add('leave'); setTimeout(swap, 260); } else swap();
+  },
+  // apertura: la card si espande fino a riempire lo stage (clip-path), come sul live
+  open(a, opt = {}) {
+    const first = !this.cur; this.cur = a.id; S.open = a.id;
+    this.render(a);
+    const el = this.el;
+    if (first) {
+      el.hidden = false; el.classList.remove('closing'); this.resetScroll(); // ora che è visibile lo scroll si può azzerare
+      const card = opt.from, fr = el.getBoundingClientRect();
+      if (card && !RM() && !opt.instant) {
+        const r = card.getBoundingClientRect();
+        el.style.transition = 'none';
+        el.style.clipPath = `inset(${r.top - fr.top}px ${fr.right - r.right}px ${fr.bottom - r.bottom}px ${r.left - fr.left}px round 14px)`;
+        void el.offsetWidth;
+        el.style.transition = ''; el.style.clipPath = 'inset(0px 0px 0px 0px round 0px)';
+      } else { el.style.clipPath = ''; }
+      el.classList.add('on');
+      setTimeout(() => $('#dtTitle')?.focus({preventScroll: true}), opt.instant || RM() ? 0 : 450);
+    }
+    writeHash(opt.push !== false); // senza nuova voce di cronologia l'URL viene comunque allineato (link condivisibili)
+  },
+  close(opt = {}) {
+    if (!this.cur) return;
+    this.closeIndex();
+    const el = this.el; this.cur = null; S.open = null;
+    const card = wheelEl && $('.slot[data-focused="true"] .card', wheelEl);
+    if (card && !RM()) {
+      const fr = el.getBoundingClientRect(), r = card.getBoundingClientRect();
+      el.classList.add('closing');
+      el.style.clipPath = `inset(${r.top - fr.top}px ${fr.right - r.right}px ${fr.bottom - r.bottom}px ${r.left - fr.left}px round 14px)`;
+      setTimeout(() => { if (!this.cur) { this.resetScroll(); el.hidden = true; el.classList.remove('on', 'closing'); el.style.clipPath = ''; } }, 520);
+    } else { this.resetScroll(); el.hidden = true; el.classList.remove('on'); el.style.clipPath = ''; }
+    if (opt.push !== false) writeHash(true);
+    $('.slot[data-focused="true"] .open', wheelEl || document)?.focus({preventScroll: true});
+  },
+  // B: si passa al pezzo successivo restando nel dettaglio; la ruota dietro si allinea
+  goNext() {
+    const a = artById(this.cur), nx = a && this.nextOf(a); if (!nx) return;
+    if (nx.sec) select(nx.sec.id, {sub: null, idx: 0, dir: 1, fromHistory: true});
+    else { S.idx = curList().findIndex(x => x.id === nx.a.id); updateOffsets(); }
+    const col = $('.dt-col', this.content);
+    const swap = () => { this.cur = nx.a.id; S.open = nx.a.id; this.render(nx.a); $('.dt-col', this.content)?.classList.add('enter'); writeHash(true); $('#dtTitle')?.focus({preventScroll: true}); };
+    if (col && !RM()) { col.classList.add('leave'); this.el.classList.add('swap'); setTimeout(() => { swap(); this.el.classList.remove('swap'); }, 260); } else swap();
+  },
+  // sincronizza con la cronologia del browser (Indietro / Avanti)
+  sync(open) {
+    if (open === this.cur) return;
+    if (!open) { this.close({push: false}); return; }
+    const a = artById(open); if (!a) return;
+    const L = curList(), i = L.findIndex(x => x.id === a.id); if (i >= 0 && i !== S.idx) { S.idx = i; updateOffsets(); }
+    this.open(a, {push: false, instant: !!this.cur});
+  },
+  scrollTo(id) {
+    const t = id === 'dt-top' ? 0 : ($('#' + id, this.content)?.offsetTop || 0) - 24;
+    this.main.scrollTo({top: t, behavior: RM() ? 'auto' : 'smooth'});
+  },
+  onScroll() {
+    const m = this.main, st = m.scrollTop, max = m.scrollHeight - m.clientHeight;
+    this.el.style.setProperty('--rp', max > 0 ? Math.min(1, st / max).toFixed(4) : 0);
+    this.el.style.setProperty('--sp', Math.min(1, st / 420).toFixed(4));
+    const marks = $$('[data-mark]', this.content); let cur = 'dt-top';
+    marks.forEach(x => { if (x.offsetTop - 160 <= st) cur = x.id; });
+    if (max > 0 && st >= max - 4 && marks.length) cur = marks[marks.length - 1].id;
+    $$('.dt-index a, .dt-ticks a', this.el).forEach(x => { const on = x.dataset.goto === cur; x.setAttribute('aria-current', on); });
+    let passed = true; $$('.dt-ticks a', this.el).forEach(x => { if (x.dataset.goto === cur) passed = false; x.classList.toggle('read', passed); });
+  },
+  toggleIndex() { const o = this.pop.hidden; this.pop.hidden = !o; $('.dt-idxbtn', this.el).setAttribute('aria-expanded', o); },
+  // ogni chiusura (e ogni nuova apertura) riparte dall'inizio dell'articolo
+  resetScroll() { this.main.scrollTop = 0; this.el.style.setProperty('--sp', 0); this.el.style.setProperty('--rp', 0); this.el.classList.remove('show-author'); },
+  closeIndex() { if (!this.pop || this.pop.hidden) return false; this.pop.hidden = true; $('.dt-idxbtn', this.el).setAttribute('aria-expanded', 'false'); return true; },
+};
+
+/* ======================================================================
+   RICERCA — entry point nell'header, con pre-filtro sulla sezione da cui si parte
+   (chip “Radar”; se si è dentro una sezione anche il chip della sezione). Ricerca locale sui 40 pezzi.
+   ====================================================================== */
+const STOP = new Set('il lo la i gli le un uno una di a da in con su per tra fra e o ed che del dello della dei degli delle al allo alla ai agli alle dal dalla dai dagli dalle nel nello nella nei negli nelle sul sulla sui sugli sulle come cosa quanto quanti quante quanta sono e cui non piu più anche ma se chi dove quando perche perché questo questa questi queste quel quella quelli quelle mi ti si ci vi sono era stato stata essere avere ha hanno ho'.split(' '));
+const norm = s => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const stem = w => w.length > 5 ? w.slice(0, w.length - 2) : w; // radice grezza: contaminati / contaminato
+const SRCH = {
+  filters: [],
+  sel: -1,
+  init() {
+    this.el = $('#search'); this.q = $('#srchQ'); this.res = $('#srchRes'); this.chips = $('.srch-chips', this.el);
+    $('#searchBtn').addEventListener('click', () => this.open());
+    $('.srch-x', this.el).addEventListener('click', () => this.close());
+    this.el.addEventListener('click', e => {
+      if (e.target === this.el) { this.close(); return; }
+      const rm = e.target.closest('[data-rmchip]'); if (rm) { this.filters = this.filters.filter(f => f.k !== rm.dataset.rmchip); this.renderChips(); this.run(); this.q.focus(); return; }
+      if (e.target.closest('[data-restore]')) { this.filters = this.baseFilters(); this.renderChips(); this.run(); this.q.focus(); return; }
+      const sg = e.target.closest('[data-sugg]'); if (sg) { this.q.value = sg.dataset.sugg; this.run(); this.q.focus(); return; }
+      const r = e.target.closest('[data-a]'); if (r) this.go(r.dataset.a);
+    });
+    this.q.addEventListener('input', () => this.run());
+    this.el.addEventListener('keydown', e => {
+      const items = $$('.srch-r', this.res);
+      if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); this.close(); return; }
+      if (e.key === 'Backspace' && document.activeElement === this.q && !this.q.value && this.filters.length) { this.filters.pop(); this.renderChips(); this.run(); return; }
+      if (e.key === 'Enter' && document.activeElement === this.q) { e.preventDefault(); if (items[0]) this.go(items[0].dataset.a); return; }
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        if (!items.length) return; e.preventDefault();
+        const i = items.indexOf(document.activeElement), n = e.key === 'ArrowDown' ? i + 1 : i - 1;
+        if (n < 0) this.q.focus(); else items[Math.min(n, items.length - 1)].focus();
+      }
+      if (e.key === 'Tab') { const f = $$('button, input', this.el).filter(x => x.offsetParent); const a = f[0], z = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === a) { e.preventDefault(); z.focus(); } else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus(); } }
+      e.stopPropagation();
+    });
+    document.addEventListener('keydown', e => { // “/” apre la ricerca (come su molti siti editoriali)
+      if (e.key === '/' && !this.isOpen() && !/input|textarea/i.test(document.activeElement?.tagName || '')) { e.preventDefault(); this.open(); }
+    });
+  },
+  isOpen() { return !this.el.hidden; },
+  baseFilters() {
+    const f = [{k: 'radar', label: 'Radar'}];
+    if (!isReset(S.cat)) f.push({k: 'sec', label: catById(S.cat).name, id: S.cat});
+    return f;
+  },
+  renderChips() {
+    this.chips.innerHTML = this.filters.map(f => `<span class="srch-chip${f.k === 'sec' ? ' sec' : ''}">${esc(f.label)}<button type="button" data-rmchip="${f.k}" aria-label="Rimuovi il filtro ${esc(f.label)}"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M9 3 3 9M3 3l6 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></button></span>`).join('');
+    this.q.setAttribute('aria-label', 'Descrivi l’informazione che cerchi' + (this.filters.length ? ', filtri: ' + this.filters.map(f => f.label).join(', ') : ''));
+  },
+  open() {
+    this.filters = this.baseFilters(); this.q.value = ''; this.renderChips(); this.run();
+    this.prevFocus = document.activeElement;
+    this.el.hidden = false; void this.el.offsetWidth; this.el.classList.add('on');
+    $('#searchBtn').setAttribute('aria-expanded', 'true');
+    setTimeout(() => this.q.focus(), RM() ? 0 : 60);
+  },
+  close() {
+    this.el.classList.remove('on'); $('#searchBtn').setAttribute('aria-expanded', 'false');
+    setTimeout(() => { if (!this.el.classList.contains('on')) this.el.hidden = true; }, RM() ? 0 : 250);
+    (this.prevFocus && this.prevFocus.isConnected ? this.prevFocus : $('#searchBtn')).focus({preventScroll: true});
+  },
+  textOf(a) { // tutto ciò che si può cercare di un pezzo
+    const b = bodyOf(a), body = b ? b.blocks.map(x => x.x).join(' ').replace(/<[^>]+>/g, ' ') : '';
+    const w = s => norm(s).split(/[^a-z0-9]+/).filter(Boolean); // parole: le corrispondenze partono da inizio parola
+    return {title: w(a.title), meta: w([a.kicker, subOf(a), secName(a), a.authors.join(' ')].join(' ')), lead: w(a.lead), body: w(body)};
+  },
+  run() {
+    const q = this.q.value.trim(), hasRadar = this.filters.some(f => f.k === 'radar'), sec = this.filters.find(f => f.k === 'sec');
+    if (!hasRadar) { this.res.innerHTML = `<p class="srch-note">Senza il filtro Radar la ricerca riguarda tutto il sito QN, non simulato in questo prototipo. <button type="button" data-restore>Ripristina il filtro</button></p>`; return; }
+    const pool = ART.filter(a => !sec || catOf(a) === sec.id);
+    if (!q) {
+      const sugg = ['bonifiche dei siti contaminati', 'violenza sulle donne', 'mafia e Stato', 'prezzi e consumi', 'sanità e liste d’attesa', 'attacchi informatici'];
+      this.res.innerHTML = `<p class="srch-lab">Prova a cercare${sec ? ' in ' + esc(sec.label) : ' in Radar'}</p><div class="srch-sugg">${sugg.map(s => `<button type="button" data-sugg="${esc(s)}">${esc(s)}</button>`).join('')}</div>`;
+      return;
+    }
+    const toks = norm(q).split(/[^a-z0-9]+/).filter(t => t.length > 2 && !STOP.has(t)).map(stem);
+    if (!toks.length) { this.res.innerHTML = ''; return; }
+    // il pre-filtro di sezione non deve nascondere i risultati migliori: si segnala quanti ce ne sono nel resto di Radar
+    const scoreOf = a => { const t = this.textOf(a); let s = 0, hit = 0; const has = (arr, k) => arr.some(x => x.startsWith(k));
+      toks.forEach(k => { let h = 0; if (has(t.title, k)) h += 4; if (has(t.meta, k)) h += 3; if (has(t.lead, k)) h += 2; if (has(t.body, k)) h += 1; if (h) hit++; s += h; }); return s + hit * 3; };
+    const outside = sec ? ART.filter(a => catOf(a) !== sec.id).map(a => ({a, s: scoreOf(a)})).filter(x => x.s >= toks.length * 6) : [];
+    const more = outside.length ? `<p class="srch-note srch-more">${outside.length === 1 ? 'Un altro risultato pertinente' : `Altri ${outside.length} risultati pertinenti`} nel resto di Radar. <button type="button" data-rmchip="sec">Cerca in tutto Radar</button></p>` : '';
+    const scored = pool.map(a => {
+      const t = this.textOf(a); let s = 0, hit = 0;
+      const has = (arr, k) => arr.some(x => x.startsWith(k));
+      toks.forEach(k => { let h = 0; if (has(t.title, k)) h += 4; if (has(t.meta, k)) h += 3; if (has(t.lead, k)) h += 2; if (has(t.body, k)) h += 1; if (h) hit++; s += h; });
+      return {a, s: s + hit * 3};
+    }).filter(x => x.s > 0).sort((x, y) => y.s - x.s || x.a.d - y.a.d).slice(0, 6);
+    if (!scored.length) { this.res.innerHTML = `<p class="srch-note">Nessun approfondimento trovato${sec ? ` in ${esc(sec.label)}. <button type="button" data-rmchip="sec">Cerca in tutto Radar</button>` : ' in Radar.'}</p>`; return; }
+    const mark = s => { let h = esc(s); toks.forEach(k => { h = h.replace(new RegExp('(?<![\\p{L}\\p{N}])(' + k + '[\\p{L}\\p{N}’]*)', 'giu'), '<mark>$1</mark>'); }); return h; };
+    this.res.innerHTML = `<p class="srch-lab">${scored.length} risultat${scored.length === 1 ? 'o' : 'i'}${sec ? ' in ' + esc(sec.label) : ' in Radar'}</p>
+      <ul class="srch-list">${scored.map(({a}) => `<li><button type="button" class="srch-r" data-a="${a.id}"><span class="th">${thumb(a)}</span><span><span class="m"><b>${esc(secName(a))}</b> · ${esc(a.kicker)} · ${relDate(a.d)}</span><span class="t">${mark(a.title)}</span></span></button></li>`).join('')}</ul>${more}`;
+  },
+  // apre il pezzo nel dettaglio: se non è nella lista corrente si passa a Radar
+  go(id) {
+    const a = artById(id); if (!a) return;
+    this.el.classList.remove('on'); this.el.hidden = true; $('#searchBtn').setAttribute('aria-expanded', 'false');
+    if (!curList().some(x => x.id === a.id)) select(RESET().id, {sub: null, idx: ART.findIndex(x => x.id === a.id), fromHistory: true});
+    else { S.idx = curList().findIndex(x => x.id === a.id); updateOffsets(); }
+    const card = wheelEl && $('.slot[data-focused="true"] .card', wheelEl);
+    setTimeout(() => DT.open(a, {from: card}), DT.isOpen() ? 0 : 60);
+  },
+};
 
 /* ---------------- Testi del banco di prova ---------------- */
 const DESC = {
@@ -1865,7 +2549,7 @@ const NOTES = {
       risk:['Le tacche distanziate per data diventano fitte con molti pezzi: oltre ~60 per sezione vanno raggruppate per settimana.','Sezione + calendario nell’indice richiedono altezza: sotto i 620px il calendario va ridotto.','Va deciso cosa fa “Prossima sezione” dopo l’ultima (ora ricomincia dalla prima) e se le sezioni vuote vanno saltate (ora sì).','Il passaggio automatico tra sezioni va testato: c’è il rischio che l’utente non si accorga del cambio.'],
       scale:'Pensata per 5 sezioni, che stanno sempre in riga con il pulsante Indice. Con 10 funziona grazie a “Altro”, ma la banda perde leggibilità.'},
   e: {model:'Razionalizzazione di D. Architettura su tre livelli e un solo ingresso: Sezione → Sottosezione → Articolo, con la data come ordinamento. Su desktop c’è una sola banda di sezioni, centrata sotto l’header, senza select: ogni voce è insieme anteprima (al passaggio) e accesso (al clic). La sezione attiva è indicata solo dal grassetto e da una barra sul bordo inferiore della banda.',
-      how:['Passaggio su una sezione: dopo un breve ritardo si apre il pannello, 1/3 sezione con descrizione e sottosezioni, 2/3 ultimi pezzi. Passando da una voce all’altra il pannello resta aperto e cambia contenuto; uscendo si chiude.','Clic sulla voce: apre la sezione. Dal pannello si entra anche da un articolo o da una sottosezione.','Tastiera: ←→ tra le voci, Invio apre, ↓ entra nel pannello, Esc torna alla voce.','Una sottosezione è un filtro dentro la sezione: compare come chip rimovibile accanto alla banda.','Cronologia: tacche a passo regolare (non più proporzionali alla data). L’altezza dipende dal numero di pezzi; oltre lo spazio disponibile si vede una finestra che scorre con il pezzo corrente. Accanto al pezzo corrente la data: “OGGI” in evidenza, poi “ieri”, poi la data.','Fine sezione: un pannello leggero, diverso da una card, con “Continua con…” e “Torna a Tutte”. Scorrendo oltre non succede nulla.','Tornare indietro: il tasto Indietro del browser riporta alla sezione precedente; ogni sezione ricorda il pezzo a cui eri arrivato.','Mobile: header più alto (come quello ufficiale), “Radar” sopra la card. In basso una pulsantiera: freccia, pill (blu QN, con sezione e posizione “3/7”), freccia. Nello sheet “Tutte” è una voce semplice; la sezione attiva è sottolineata in azzurro e non ha pulsante; le altre hanno sottosezioni, ultimi e “Apri”.'],
+      how:['Passaggio su una sezione: dopo un breve ritardo si apre il pannello, 1/3 sezione con descrizione e sottosezioni, 2/3 ultimi pezzi. Passando da una voce all’altra il pannello resta aperto e cambia contenuto; uscendo si chiude.','Clic sulla voce: apre la sezione. Dal pannello si entra anche da un articolo o da una sottosezione.','Tastiera: ←→ tra le voci, Invio apre, ↓ entra nel pannello, Esc torna alla voce.','Una sottosezione è un filtro dentro la sezione: compare come chip rimovibile accanto alla banda.','Cronologia: tacche a passo regolare (non più proporzionali alla data). L’altezza dipende dal numero di pezzi; oltre lo spazio disponibile si vede una finestra che scorre con il pezzo corrente. Accanto al pezzo corrente la data: “OGGI” in evidenza, poi “ieri”, poi la data.','Fine sezione “Essenziale” (scelta tra tre proposte): un pannello con “Fine di Economia”, il pulsante “Continua con Società” e il link “Torna a Radar”. Scorrendo oltre non succede nulla.','Tornare indietro: il tasto Indietro del browser riporta alla sezione precedente; ogni sezione ricorda il pezzo a cui eri arrivato.','Mobile: header più alto (come quello ufficiale), “Radar” sopra la card. In basso una pulsantiera: freccia, pill (blu QN, con sezione e posizione “3/7”), freccia. Nello sheet “Tutte” è una voce semplice; la sezione attiva è sottolineata in azzurro e non ha pulsante; le altre hanno sottosezioni, ultimi e “Apri”.'],
       pro:['Nessuna ripetizione: le sezioni compaiono una volta sola, ogni voce porta anche alla sua anteprima.','Linguaggio già noto agli utenti della home QN.','Le sottosezioni sono visibili, senza aggiungere un terzo menu.','Fine sezione e ritorno indietro sono prevedibili.'],
       risk:['L’anteprima al passaggio non esiste su touch: su tablet il primo tocco apre direttamente la sezione.','Le sottosezioni vuote (es. Industria, Città) vanno mostrate o nascoste? Ora sono visibili ma disattivate.','Va deciso se le sottosezioni sono filtri (come qui) o pagine d’archivio separate.','Il ruolo della data va riconsiderato con i volumi reali (oggi 4–5 pezzi al giorno): filtro per giorno, solo indicazione o niente. Con molti più pezzi servirà anche il caricamento progressivo.'],
       scale:'Con 5 sezioni i link stanno sempre nella barra. Con 10 la barra scorre in orizzontale; il layer regge senza modifiche.'},
@@ -1882,8 +2566,11 @@ function renderDesc() {
       <li>A, B, C partono da “In evidenza” (proposta del giorno, ultimi 9 pezzi); D parte da “Tutte” (archivio in ordine cronologico).</li>
       <li>In tutte le varianti, dopo l’ultimo pezzo di una sezione compare un pannello “Fine di…” con “Continua con…” (salta le sezioni vuote) e “Torna a…”. Non c’è passaggio automatico.</li>
       <li>In tutte le varianti ogni sezione ricorda il pezzo a cui eri arrivato e il tasto Indietro del browser riporta alla sezione precedente.</li>
+      <li>Header (bozza Figma “Navbar”): niente data; a destra Abbonati, Accedi e ricerca (su mobile Accedi va nel menu). La ricerca (bozza “Search”) parte con il pre-filtro “Radar”; se si è dentro una sezione si aggiunge anche il chip della sezione (proposta). I chip si tolgono con × o Backspace; senza “Radar” la ricerca su tutto QN non è simulata. Se il filtro di sezione nasconde risultati più pertinenti, sotto compare “Altri risultati nel resto di Radar”. Scorciatoia “/”, Invio apre il primo risultato nel dettaglio.</li>
+      <li>Dettaglio notizia (direzione A + fine di B): si apre dal titolo o dal pulsante espandi, la card si allarga fino allo schermo pieno e l’URL diventa quello dell’articolo. Desktop: colonna guida con foto che si riduce scorrendo, sezione › sottosezione, tempo di lettura, numero di grafici e indice di sottotitoli e grafici che segue la lettura (stesse tacche del rail). In fondo, il pezzo successivo della sezione: si continua a leggere senza chiudere, e dopo l’ultimo si passa alla sezione successiva; la ruota dietro resta allineata. Mobile: barra con ritorno alla sezione, indice e avanzamento. Indietro del browser torna al pezzo precedente, Esc chiude.</li>
+      <li>Testi del dettaglio: estratti dagli articoli su quotidiano.net. 18 pezzi sono liberi (testo completo, 70 grafici indicati con titolo e link perché l’artifact non può incorporare gli iframe); 22 sono a pagamento: il testo originale non è accessibile (non ho aggirato il paywall). Per vedere uno scroll realistico, i pezzi a pagamento e quelli liberi sotto le 900 parole proseguono con testo segnaposto generico sul tema della sottosezione (senza dati inventati), segnalato da una nota “Da qui testo segnaposto”. L’interruttore “Paywall” nella toolbar mostra invece il riquadro abbonati sui pezzi a pagamento.</li>
       <li>Il cambio di sezione usa lo stesso movimento in tutte: impulso radar dal centro e ruota che gira via, così la transizione si legge come “nuova scansione”.</li>
-      <li>Contenuti reali: i 40 approfondimenti pubblicati su quotidiano.net/radar dal 18 al 25 novembre 2026, con titoli, occhielli, lead, firme e foto originali. La classificazione in sezioni e sottosezioni è una proposta mia, da validare con la redazione. Con 5 sezioni nessuna è vuota; restano vuote alcune sottosezioni (es. Clima, Energia).</li>
+      <li>Contenuti reali: i 40 approfondimenti pubblicati su quotidiano.net/radar dal 18 al 26 novembre 2026 (aggiornati all’edizione del 26), con titoli, occhielli, lead, firme e foto originali. La classificazione in sezioni e sottosezioni è una proposta mia, da validare con la redazione. Con 5 sezioni nessuna è vuota; restano vuote alcune sottosezioni (es. Clima, Energia).</li>
       <li>Con 5 sezioni gli articoli vengono riassegnati secondo la tabella del brief (es. Politica → Geopolitica, Salute → Società).</li>
       <li>Lo stato è nell’URL (#variante-sezioni-vista-sezione) per condividere una configurazione precisa.</li>
       <li>Tema scuro: usa i token “strip-radar” già presenti nel CSS di produzione (fondo #060e11, card #0b181d, testo #dfe8ec, accento #1fbaed). In “Auto” segue prefers-color-scheme del sistema, che oggi la pagina live ignora. Le miniature segnaposto sono invertite per il dark; le foto reali andranno gestite a parte (al massimo una leggera riduzione di luminosità).</li>
@@ -1895,13 +2582,15 @@ function toggleNotes(o) { $('#notes').classList.toggle('open', o); $('#notesBtn'
 /* ---------------- Hash ---------------- */
 // Cambio sezione = nuova voce nella cronologia del browser (Indietro riporta alla sezione precedente)
 function writeHash(push) {
-  const h = `#${S.variant}-${S.tax}-${S.view}-${S.cat}${S.sub ? '-' + slug(S.sub) : ''}`;
+  const h = `#${S.variant}-${S.tax}-${S.view}-${S.cat}${S.sub ? '-' + slug(S.sub) : ''}${S.open ? '-r' + S.open.slice(1) : ''}`;
   if (location.hash === h) return;
   try { if (push) history.pushState(null, '', h); else history.replaceState(null, '', h); } catch (e) { /* ignorato */ }
 }
 function parseHash() {
   const p = location.hash.slice(1).split('-'); if (!p[0]) return null;
-  const o = {variant:S.variant, tax:S.tax, view:S.view, cat:S.cat, sub:null};
+  const o = {variant:S.variant, tax:S.tax, view:S.view, cat:S.cat, sub:null, open:null};
+  // ultimo segmento “r12” = articolo aperto nel dettaglio
+  if (p.length > 4 && /^r\d+$/.test(p[p.length - 1])) o.open = 'a' + p.pop().slice(1);
   if (VARIANTS[p[0]]) o.variant = p[0];
   if (p[1] === '5' || p[1] === '10') o.tax = +p[1];
   if (p[2] === 'desktop' || p[2] === 'mobile') o.view = p[2];
@@ -1909,11 +2598,12 @@ function parseHash() {
   if (p[4]) o.sub = [...Object.values(SUBS5).flat(), ...ART.map(a => a.kicker)].find(n => slug(n) === p[4]) || null;
   return o;
 }
-function readHash() { const o = parseHash(); if (o) Object.assign(S, o); }
+function readHash() { const o = parseHash(); if (o) { const {open, ...rest} = o; Object.assign(S, rest); S.pendingOpen = open; } }
 function onHistory() {
   const o = parseHash(); if (!o) return;
-  if (o.variant !== S.variant || o.tax !== S.tax || o.view !== S.view) { Object.assign(S, o); rebuild(); return; }
+  if (o.variant !== S.variant || o.tax !== S.tax || o.view !== S.view) { const {open, ...rest} = o; Object.assign(S, rest); rebuild(); DT.sync(open); return; }
   if (o.cat !== S.cat || o.sub !== S.sub) select(o.cat, {sub: o.sub, fromHistory: true});
+  DT.sync(o.open);
 }
 
 /* ---------------- Montaggio ---------------- */
@@ -1966,16 +2656,25 @@ darkQ.addEventListener?.('change', applyTheme);
 new MutationObserver(applyTheme).observe(document.documentElement, {attributes: true, attributeFilter: ['data-theme']});
 try { const t = localStorage.getItem('radar-lab-theme'); if (t === 'light' || t === 'dark' || t === 'auto') S.theme = t; } catch (er) { /* ignorato */ }
 applyTheme();
+// Scelta fatta: fine sezione “Essenziale” (S.endv = 'a'). Il selettore delle proposte 2 e 3 è stato tolto dalla toolbar.
+$('#segEnd')?.addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b || b.dataset.end === S.endv) return;
+  S.endv = b.dataset.end;
+  $$('#segEnd button').forEach(x => x.setAttribute('aria-checked', x.dataset.end === S.endv));
+  const n = curList().length; S.idx = Math.min(S.idx, endInControls() ? Math.max(0, n - 1) : n);
+  renderWheel(0); nav?.update();
+});
+$('#payBtn').addEventListener('click', () => { S.paywall = !S.paywall; $('#payBtn').setAttribute('aria-pressed', S.paywall); if (DT.cur) DT.render(artById(DT.cur)); });
 $('#notesBtn').addEventListener('click', () => toggleNotes(!$('#notes').classList.contains('open')));
 // tastiera sui radiogroup della toolbar
 $$('.seg').forEach(g => g.addEventListener('keydown', e => { if (!['ArrowLeft', 'ArrowRight'].includes(e.key)) return; const bs = $$('button', g), i = bs.indexOf(document.activeElement); const n = bs[clamp(i + (e.key === 'ArrowRight' ? 1 : -1), 0, bs.length - 1)]; n.focus(); n.click(); }));
 
 /* Ruota: frecce, rotella, swipe, clic */
 $('#prev').addEventListener('click', () => step(-1));
-$('#next').addEventListener('click', () => step(1));
+$('#next').addEventListener('click', () => step(1, true));
 let wAcc = 0, wLock = 0;
 frame.addEventListener('wheel', e => {
-  if (e.target.closest('.dial, .a-hit, .idx, .sheet, .c-menu, .c-tabs, .c-grid, .b-rail, .d-rail, .d-tl, .e-rail, .e-strip, .e-layer, .e-row')) return;
+  if (e.target.closest('.dt, .dial, .a-hit, .idx, .sheet, .c-menu, .c-tabs, .c-grid, .b-rail, .d-rail, .d-tl, .e-rail, .e-strip, .e-layer, .e-row')) return;
   e.preventDefault(); const now = performance.now();
   wAcc += Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
   if (Math.abs(wAcc) < 45 || now < wLock) return;
@@ -1996,15 +2695,16 @@ zone.addEventListener('click', e => {
   const slot = e.target.closest('.slot'); if (!slot) return;
   const i = +slot.dataset.i;
   if (i !== S.idx) { S.idx = i; updateOffsets(); writeHash(); return; }
-  if (e.target.closest('.open')) toast('Apertura dell’articolo: fuori dal perimetro di questo prototipo');
+  if (e.target.closest('.open')) { const a = curList()[S.idx]; if (a) DT.open(a, {from: slot.querySelector('.card')}); }
 });
 frame.addEventListener('keydown', e => {
-  if (e.target.closest('[role="tablist"], .idx, .sheet, .c-menu, .c-grid, .b-rail, .d-rail, .d-tl, .e-rail, .e-strip, .e-layer, .e-row')) return;
+  if (e.target.closest('.dt, [role="tablist"], .idx, .sheet, .c-menu, .c-grid, .b-rail, .d-rail, .d-tl, .e-rail, .e-strip, .e-layer, .e-row')) return;
   const nextK = G.m ? 'ArrowRight' : 'ArrowDown', prevK = G.m ? 'ArrowLeft' : 'ArrowUp';
   if (e.key === nextK) { e.preventDefault(); step(1); } else if (e.key === prevK) { e.preventDefault(); step(-1); }
 });
 document.addEventListener('keydown', e => {
   if (e.key !== 'Escape') return;
+  if (DT.isOpen()) { e.preventDefault(); if (!DT.closeIndex()) DT.close(); return; }
   if ($('#notes').classList.contains('open')) { toggleNotes(false); return; }
   if (nav?.isOpen && nav.close) nav.close();
 });
@@ -2018,5 +2718,12 @@ readHash();
 new ResizeObserver(() => { cancelAnimationFrame(relayout.r); relayout.r = requestAnimationFrame(() => lastLayout === null ? null : relayout()); }).observe(frame);
 document.fonts?.ready.then(() => nav && nav.layout());
 rebuild();
+DT.init();
+SRCH.init();
+$$('[data-hact]').forEach(b => b.addEventListener('click', () => toast(`${b.dataset.hact}: flusso non simulato nel prototipo`)));
+if (S.pendingOpen) { // link diretto a un articolo: ruota allineata e dettaglio aperto
+  const a = artById(S.pendingOpen); S.pendingOpen = null;
+  if (a) { const i = curList().findIndex(x => x.id === a.id); if (i >= 0) { S.idx = i; updateOffsets(); } DT.open(a, {push: false, instant: true}); }
+}
 })();
 </script>
